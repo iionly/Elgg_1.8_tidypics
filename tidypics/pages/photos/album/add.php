@@ -15,6 +15,7 @@ $title = elgg_echo('photos:add');
 
 // set up breadcrumbs
 elgg_push_breadcrumb(elgg_echo('photos'), 'photos/siteimagesall');
+elgg_push_breadcrumb(elgg_echo('tidypics:albums'), 'photos/all');
 if (elgg_instanceof($owner, 'user')) {
 	elgg_push_breadcrumb($owner->name, "photos/owner/$owner->username");
 } else {

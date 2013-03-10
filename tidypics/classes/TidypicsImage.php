@@ -71,12 +71,12 @@ class TidypicsImage extends ElggFile {
 			}
 		}
 
+                $this->removeThumbnails();
+
 		$album = get_entity($this->container_guid);
 		if ($album) {
 			$album->removeImage($this->guid);
 		}
-
-		$this->removeThumbnails();
 
 		// update quota
 		$owner = $this->getOwnerEntity();

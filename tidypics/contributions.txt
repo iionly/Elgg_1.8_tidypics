@@ -1,6 +1,24 @@
 Changelog and contributors list
 
 ------------------------------------------------------------------------
+Version 1.8.1beta2 Change List
+Release Date: 03/10/2013
+------------------------------------------------------------------------
+BEGIN VERSION 1.8.1beta2 CHANGES
+------------------------------------------------------------------------
+ * Fixed quota support,
+ * Fixed issue with image entries (without images available) getting created on failed image uploads,
+ * Fixed an issue introduced in beta1 that resulted in (harmless but many) log entries getting created,
+ * Fixed Highest vote counts page,
+ * Display of Elggx Fivestar rating widget defined via Elggx Fivestar default view (requires version 1.8.3 of Elggx Fivestar plugin).
+Contributors:
+  * iionly
+------------------------------------------------------------------------
+END VERSION 1.8.1beta2 CHANGES
+------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------
 Version 1.8.1beta1 Change List
 Release Date: 03/05/2013
 ------------------------------------------------------------------------

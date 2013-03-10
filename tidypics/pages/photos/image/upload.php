@@ -34,6 +34,7 @@ $title = elgg_echo('album:addpix');
 
 // set up breadcrumbs
 elgg_push_breadcrumb(elgg_echo('photos'), 'photos/siteimagesall');
+elgg_push_breadcrumb(elgg_echo('tidypics:albums'), 'photos/all');
 elgg_push_breadcrumb($owner->name, "photos/owner/$owner->username");
 elgg_push_breadcrumb($album->getTitle(), $album->getURL());
 elgg_push_breadcrumb(elgg_echo('album:addpix'));

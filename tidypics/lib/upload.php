@@ -113,7 +113,7 @@ function tp_upload_check_quota($image_size, $owner_guid) {
 	}
 
 	$owner = get_entity($owner_guid);
-	$image_repo_size_md = (int)$owner->image_repo_size;
+	$image_repo_size = (int)$owner->image_repo_size;
 
 	return ($image_repo_size + $image_size) < $quota;
 }

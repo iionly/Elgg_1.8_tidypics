@@ -50,7 +50,7 @@ try {
 	echo elgg_echo('success');
 } catch (Exception $e) {
 	// remove the bits that were saved
-	$image->delete();
+	delete_entity($image->getGUID());
 	echo $e->getMessage();
 }
 

@@ -16,13 +16,11 @@ $prefix = $CONFIG->dbprefix;
 $max_limit = 200; //get extra because you'll have multiple views per image in the result set
 $max = 20; //controls how many actually show on screen
 
-$sql = "SELECT ent.guid, u.name as owner, count( 1 ) AS mycount, avg( ms2.string ) AS average
+$sql = "SELECT ent.guid, u.name AS owner, count(1) AS mycount, avg( ms2.string ) AS average
              FROM " . $prefix . "entities ent
-             INNER JOIN " . $prefix . "entity_subtypes sub ON ent.subtype = sub.id
-             AND sub.subtype = 'image'
+             INNER JOIN " . $prefix . "entity_subtypes sub ON ent.subtype = sub.id AND sub.subtype = 'image'
              INNER JOIN " . $prefix . "annotations ann1 ON ann1.entity_guid = ent.guid
-             INNER JOIN " . $prefix . "metastrings ms ON ms.id = ann1.name_id
-             AND ms.string = 'fivestar'
+             INNER JOIN " . $prefix . "metastrings ms ON ms.id = ann1.name_id AND ms.string = 'fivestar'
              INNER JOIN " . $prefix . "metastrings ms2 ON ms2.id = ann1.value_id
              INNER JOIN " . $prefix . "users_entity u ON ent.owner_guid = u.guid
              GROUP BY ent.guid

@@ -25,6 +25,7 @@ $title = elgg_echo('tidypics:sort', array($album->getTitle()));
 
 // set up breadcrumbs
 elgg_push_breadcrumb(elgg_echo('photos'), 'photos/siteimagesall');
+elgg_push_breadcrumb(elgg_echo('tidypics:albums'), 'photos/all');
 if (elgg_instanceof($owner, 'group')) {
 	elgg_push_breadcrumb($owner->name, "photos/group/$owner->guid/all");
 } else {

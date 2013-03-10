@@ -47,8 +47,6 @@ class TidypicsAlbum extends ElggObject {
 
 		mkdir(tp_get_img_dir() . $this->guid, 0755, true);
 
-		elgg_trigger_event('create', 'album', $this);
-
 		return true;
 	}
 

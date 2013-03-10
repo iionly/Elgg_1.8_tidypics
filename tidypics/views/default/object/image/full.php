@@ -57,10 +57,11 @@ echo $img;
 echo elgg_view('photos/tagging/tags', $vars);
 echo '</div>';
 
-if (elgg_is_active_plugin('elggx_fivestar')) {
-    echo '<br>';
-    echo elgg_view('elggx_fivestar/voting', array('entity'=> $vars['entity']));
-}
+// alternative way to display the fivestar rating widget in case the default view defined in Elggx Fivestar is not to be used
+// if (elgg_is_active_plugin('elggx_fivestar')) {
+//     echo '<br>';
+//     echo elgg_view('elggx_fivestar/voting', array('entity'=> $vars['entity']));
+// }
 
 if ($photo->description) {
 	echo elgg_view('output/longtext', array(

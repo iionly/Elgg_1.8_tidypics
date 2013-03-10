@@ -26,4 +26,4 @@ $body = elgg_view('output/url', array(
 	'is_trusted' => true,
 ));
 
-echo elgg_view_module('tidypics-image', $header, $body, $params);
+echo elgg_view_module('tidypics-image', $header, $body);
