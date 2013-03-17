@@ -11,8 +11,9 @@ echo elgg_view('input/dropdown', array(
 	'name' => 'params[img_river_view]',
 	'options_values' => array(
 		'all' => elgg_echo('tidypics:option:all'),
-		'batch' => '1',
-		'none' => elgg_echo('tidypics:option:none'),
+		'1' => elgg_echo('tidypics:option:single'),
+		'batch' =>  elgg_echo('tidypics:option:batch'),
+		'none' => elgg_echo('tidypics:option:none')
 	),
 	'value' => $plugin->img_river_view,
 ));
@@ -24,6 +25,7 @@ echo elgg_view('input/dropdown', array(
 	'options_values' => array(
 		'cover' => elgg_echo('tidypics:option:cover'),
 		'set' => elgg_echo('tidypics:option:set'),
+		'none' => elgg_echo('tidypics:option:none')
 	),
 	'value' => $plugin->album_river_view,
 ));

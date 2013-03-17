@@ -39,7 +39,7 @@ $defaults = array(
 	'image_lib' => 'GD',
 
 	'img_river_view' => 'batch',
-	'album_river_view' => 'set',
+	'album_river_view' => 'cover',
 
 	'image_sizes' => $image_sizes,
 

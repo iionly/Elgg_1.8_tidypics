@@ -41,7 +41,9 @@ if ($images) {
 
 // "added images to album" river
 if ($img_river_view == "batch" && $album->new_album == false) {
-	add_to_river('river/object/tidypics_batch/create', 'create', $batch->getOwnerGUID(), $batch->getGUID());
+	add_to_river('river/object/album/create_batch_album', 'create', $batch->getGUID(), $album->getGUID());
+}  else if ($img_river_view == "1" && $album->new_album == false) {
+        add_to_river('river/object/album/create_single_entry', 'create', $batch->getGUID(), $album->getGUID());
 }
 
 // "created album" river
@@ -49,7 +51,10 @@ if ($album->new_album) {
 	$album->new_album = false;
 	$album->first_upload = true;
 
-	add_to_river('river/object/album/create', 'create', $album->getOwnerGUID(), $album->getGUID());
+	$album_river_view = elgg_get_plugin_setting('album_river_view', 'tidypics');
+        if ($album_river_view != "none") {
+                add_to_river('river/object/album/create', 'create', $album->getOwnerGUID(), $album->getGUID());
+        }
 
 	// "created album" notifications
 	// we throw the notification manually here so users are not told about the new album until

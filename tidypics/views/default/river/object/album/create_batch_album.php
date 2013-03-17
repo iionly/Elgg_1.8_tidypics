@@ -2,13 +2,11 @@
 /**
  * Batch river view
  *
- * @author Cash Costello
+ * @author Cash Costello, iionly
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU General Public License v2
- *
- * Remark (by iionly): keeping this view for display of existing batch river entries created prior Tidypics 1.8.1beta3
  */
 
-$batch = $vars['item']->getObjectEntity();
+$batch = get_entity($vars['item']->subject_guid);
 
 // Get images related to this batch
 $images = elgg_get_entities_from_relationship(array(
@@ -20,7 +18,7 @@ $images = elgg_get_entities_from_relationship(array(
 	'offset' => 0,
 ));
 
-$album = $batch->getContainerEntity();
+$album = $vars['item']->getObjectEntity();
 if (!$album) {
 	// something went quite wrong - this batch has no associated album
 	return true;
@@ -31,7 +29,7 @@ $album_link = elgg_view('output/url', array(
 	'is_trusted' => true,
 ));
 
-$subject = $vars['item']->getSubjectEntity();
+$subject = $album->getOwnerEntity();
 $subject_link = elgg_view('output/url', array(
 	'href' => $subject->getURL(),
 	'text' => $subject->name,
@@ -55,6 +53,7 @@ if (count($images) == 1) {
 	$summary = elgg_echo('image:river:created:multiple', array($subject_link, count($images), $album_link));
 }
 
+$vars['item']->subject_guid = $subject->getGUID();
 echo elgg_view('river/elements/layout', array(
 	'item' => $vars['item'],
 	'attachments' => $attachments,

@@ -1,6 +1,6 @@
 Tidypics plugin for Elgg 1.8
-Latest Version: 1.8.1beta2
-Released: 2013-03-10
+Latest Version: 1.8.1beta3
+Released: 2013-03-17
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (c) iionly 2013, (C) Cash Costello 2011-2013
@@ -22,7 +22,6 @@ Known issues:
 - watermarking not fully tested / not fully working,
 - slightshow not yet fully tested,
 - tagging is not yet feature complete (as compared to pre-Elgg 1.8, e.g. tagging users) and what is implemented might still not fully work,
-- I'm still not fully happy about the river entries (and the corresponding plugin settings) generated on album creation and image uploads.
 
 
 
@@ -35,6 +34,11 @@ Installation and configuration:
 
 
 Changelog:
+
+Changes for release 1.8.1beta3 (by iionly):
+
+- River entries fixed (note: commenting on existing "batch" river entries does not work. It will only work for river entries created after upgrading to 1.8.1beta3!)
+
 
 Changes for release 1.8.1beta2 (by iionly):
 
