@@ -1,12 +1,13 @@
 <?php
 /**
- * Create a single river entry for every batch of uploaded photos
+ * Batch river view; showing only the thumbnail of the first image of the badge
  *
- * @author Cash Costello, iionly
+ * @author Cash Costello
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU General Public License v2
+ *
  */
 
-$batch = get_entity($vars['item']->subject_guid);
+$batch = $vars['item']->getObjectEntity();
 
 // Count images in batch
 $images_count = elgg_get_entities_from_relationship(array(
@@ -19,27 +20,18 @@ $images_count = elgg_get_entities_from_relationship(array(
               'count' => true
 ));
 
-// Get first image related to this batch
-$image_batch = elgg_get_entities_from_relationship(array(
+// Get images related to this batch
+$images = elgg_get_entities_from_relationship(array(
 	'relationship' => 'belongs_to_batch',
 	'relationship_guid' => $batch->getGUID(),
 	'inverse_relationship' => true,
 	'type' => 'object',
 	'subtype' => 'image',
 	'offset' => 0,
-	'limit' => 1
-));
-$image = $image_batch[0];
-
-$attachments = elgg_view_entity_icon($image, 'tiny');
-
-$image_link = elgg_view('output/url', array(
-        'href' => $image->getURL(),
-        'text' => $image->getTitle(),
-        'is_trusted' => true,
+	'limit' => 1,
 ));
 
-$album = $vars['item']->getObjectEntity();
+$album = $batch->getContainerEntity();
 if (!$album) {
 	// something went quite wrong - this batch has no associated album
 	return true;
@@ -50,7 +42,7 @@ $album_link = elgg_view('output/url', array(
 	'is_trusted' => true,
 ));
 
-$subject = $album->getOwnerEntity();
+$subject = $vars['item']->getSubjectEntity();
 $subject_link = elgg_view('output/url', array(
 	'href' => $subject->getURL(),
 	'text' => $subject->name,
@@ -58,7 +50,16 @@ $subject_link = elgg_view('output/url', array(
 	'is_trusted' => true,
 ));
 
-$vars['item']->subject_guid = $subject->getGUID();
+if ($images) {
+	$attachments = elgg_view_entity_icon($images[0], 'tiny');
+	
+        $image_link = elgg_view('output/url', array(
+                    'href' => $images[0]->getURL(),
+                    'text' => $images[0]->getTitle(),
+                    'is_trusted' => true,
+                   ));
+}
+
 if ($images_count > 1) {
         echo elgg_view('river/elements/layout', array(
                 'item' => $vars['item'],

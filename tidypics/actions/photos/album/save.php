@@ -31,6 +31,12 @@ if ($guid) {
 	        $image->access_id = $access_id;
 	        $image->save();
 	    }
+	    $options = array('type' => 'object', 'subtype' => 'tidypics_batch', 'container_guid' => $album->guid, 'limit' => false);
+            $batches = new ElggBatch('elgg_get_entities', $options);
+            foreach($batches as $batch) {
+                $batch->access_id = $access_id;
+                $batch->save();
+            }
 	}
 } else {
 	$album = new TidypicsAlbum();

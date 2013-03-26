@@ -41,9 +41,9 @@ if ($images) {
 
 // "added images to album" river
 if ($img_river_view == "batch" && $album->new_album == false) {
-	add_to_river('river/object/album/create_batch_album', 'create', $batch->getGUID(), $album->getGUID());
+	add_to_river('river/object/tidypics_batch/create', 'create', $batch->getOwnerGUID(), $batch->getGUID());
 }  else if ($img_river_view == "1" && $album->new_album == false) {
-        add_to_river('river/object/album/create_single_entry', 'create', $batch->getGUID(), $album->getGUID());
+        add_to_river('river/object/tidypics_batch/create_single_image', 'create', $batch->getOwnerGUID(), $batch->getGUID());
 }
 
 // "created album" river

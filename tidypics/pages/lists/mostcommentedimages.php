@@ -40,7 +40,7 @@ elgg_register_menu_item('title', array('name' => 'addphotos',
 if (!empty($result)) {
         $area2 = $result;
 } else {
-        $area2 = elgg_echo('tidypics:mostcommented:nosucess');
+        $area2 = elgg_echo('tidypics:mostcommented:nosuccess');
 }
 $body = elgg_view_layout('content', array(
         'filter_override' => '',

@@ -1,6 +1,6 @@
 Tidypics plugin for Elgg 1.8
-Latest Version: 1.8.1beta3
-Released: 2013-03-17
+Latest Version: 1.8.1beta4
+Released: 2013-03-26
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (c) iionly 2013, (C) Cash Costello 2011-2013
@@ -21,7 +21,7 @@ Known issues:
 
 - watermarking not fully tested / not fully working,
 - slightshow not yet fully tested,
-- tagging is not yet feature complete (as compared to pre-Elgg 1.8, e.g. tagging users) and what is implemented might still not fully work,
+- tagging is not yet feature complete (as compared to pre-Elgg 1.8, e.g. tagging users) and what is implemented might still not fully work.
 
 
 
@@ -34,6 +34,14 @@ Installation and configuration:
 
 
 Changelog:
+
+Changes for release 1.8.1beta4 (by iionly):
+
+- River entries code reworked (solution introduced in beta3 did not work as intended),
+- Option to include preview images in river entries when comments were made on albums and images,
+- Fix a few errors in language files (en and de),
+- Permission handling of tidypics_batches: on permission change of an album the permissions of corresponding tidypics_batches are changed to same new permission.
+
 
 Changes for release 1.8.1beta3 (by iionly):
 

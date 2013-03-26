@@ -1,12 +1,29 @@
 Changelog and contributors list
 
 ------------------------------------------------------------------------
+Version 1.8.1beta4 Change List
+Release Date: 26/03/2013
+------------------------------------------------------------------------
+BEGIN VERSION 1.8.1beta4 CHANGES
+------------------------------------------------------------------------
+ * River entries code reworked (solution introduced in beta3 did not work as intended),
+ * Option to include preview images in river entries when comments were made on albums and images,
+ * Fix a few errors in language files (en and de),
+ * Permission handling of tidypics_batches: on permission change of an album the permissions of corresponding tidypics_batches are changed to same new permission,
+Contributors:
+  * iionly
+------------------------------------------------------------------------
+END VERSION 1.8.1beta4 CHANGES
+------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------
 Version 1.8.1beta3 Change List
 Release Date: 03/17/2013
 ------------------------------------------------------------------------
 BEGIN VERSION 1.8.1beta3 CHANGES
 ------------------------------------------------------------------------
- * River entries fixed (note: commenting on existing "batch" river entries does not work. It will only work for river entries created after upgrading to 1.8.1beta3!)
+ * River entries fixed (note: commenting on existing "batch" river entries does not work. It will only work for river entries created after upgrading to 1.8.1beta3!).
 Contributors:
   * iionly
 ------------------------------------------------------------------------
@@ -36,13 +53,13 @@ Release Date: 03/05/2013
 ------------------------------------------------------------------------
 BEGIN VERSION 1.8.1beta1 CHANGES
 ------------------------------------------------------------------------
- * removal of option to set access level for images. Images always get the same
+ * Removal of option to set access level for images. Images always get the same
    access level as the album they are uploaded to. On changing the access level
-   of an album all its images get assigned the same access level, too.
- * new plugin navigation / pages: more centered on (recent) images than albums,
- * support of Widget Manager index page and groups' pages widgets,
+   of an album all its images get assigned the same access level, too,
+ * New plugin navigation / pages: more centered on (recent) images than albums,
+ * Support of Widget Manager index page and groups' pages widgets,
  * Fivestar voting widget included on detailed image views,
- * some code-cleanup.
+ * Some code-cleanup.
 Contributors:
   * Cash Costello
   * Brett Profitt

@@ -8,7 +8,7 @@
  * @license http://www.gnu.org/licenses/gpl-2.0.html GNU General Public License v2
  */
 
-echo '<div class="elgg-col elgg-col-4of5">';
+echo '<div class="elgg-col elgg-col-2of3">';
 
 echo elgg_view('input/autocomplete', array(
 	'name' => 'username',
@@ -26,8 +26,6 @@ echo elgg_view('input/hidden', array(
 
 echo '</div>';
 
-echo '<div class="elgg-col elgg-col-1of5 center">';
-echo elgg_view('input/submit', array(
-	'value' => elgg_echo('tidypics:actiontag'),
-));
+echo '<div class="elgg-col elgg-col-1of3">';
+echo elgg_view('input/submit', array('value' => elgg_echo('tidypics:actiontag')));
 echo '</div>';

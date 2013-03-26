@@ -104,6 +104,15 @@ function tidypics_init() {
 
 	// flash session work around for uploads when use_only_cookies is set
 	elgg_register_plugin_hook_handler('forward', 'csrf', 'tidypics_ajax_session_handler');
+	
+	// override the default url to view a tidypics_batch object
+        elgg_register_entity_url_handler('object', 'tidypics_batch', 'tidypics_batch_url_handler');
+
+        // no userpoints for commenting on a tidypics_batch as the points are additionally awarded by adding the same comment to the corresponding album
+        elgg_register_plugin_hook_handler('userpoints:add', 'object', 'tidypics_userpoints_adding');
+
+	// custom layout for comments on tidypics river entries
+        elgg_register_plugin_hook_handler('creating', 'river', 'tidypics_comments_handler');
 
 	// Register actions
 	$base_dir = elgg_get_plugins_path() . 'tidypics/actions/photos';
@@ -667,4 +676,72 @@ function tidypics_ajax_session_handler($hook, $type, $value, $params) {
 	include $actions['photos/image/ajax_upload']['file'];
 
 	exit;
+}
+
+/**
+ * return the album url of the album the tidypics_batch entitities belongs to
+ */
+function tidypics_batch_url_handler($batch) {
+        if (!$batch->getOwnerEntity()) {
+                // default to a standard view if no owner.
+                return false;
+        }
+
+        $album = get_entity($batch->container_guid);
+
+        return $album->getURL();
+}
+
+/**
+ * not awarding userpoints for commenting on tidypics_batch entitities as the same action also adds the comment
+ * to the corresponding album entity and this action gives the userpoints 
+ */
+function tidypics_userpoints_adding($hook, $type, $value, $params) {
+
+        $userpoints_entity = $params['entity'];
+        $userpoints_meta_entity = get_entity($userpoints_entity->meta_guid);
+
+        if ($userpoints_meta_entity && $userpoints_meta_entity->getSubtype() == 'tidypics_batch') {
+                return false;
+        } else {
+                return true;
+        }
+}
+
+
+/**
+ * custom layout for comments on tidypics river entries
+ *
+ * Overriding generic_comment view
+ */
+function tidypics_comments_handler($hook, $type, $value, $params) {
+
+        $result = $value;
+
+        $subtype = $value['subtype'];
+        $action_type = $value['action_type'];
+
+        if ($action_type != 'comment' && !($subtype == 'image' || $subtype == 'album' || $subtype !== 'tidypics_batch')) {
+                return;
+        }
+
+        if ($subtype == 'image') {
+                $result['view'] = 'river/annotation/comment/image';
+        }
+        if ($subtype == 'album') {
+                $result['view'] = 'river/annotation/comment/album';
+        }
+        if ($subtype == 'tidypics_batch') {
+                $batch = get_entity($value['object_guid']);
+                $album = get_entity($batch->container_guid);
+                $annotation = elgg_get_annotation_from_id($value['annotation_id']);
+                create_annotation($album->getGUID(), 'generic_comment', $annotation->value, 'text', $annotation->owner_guid, $album->access_id);
+                $result['type'] = 'object';
+                $result['subtype'] = 'album';
+                $result['access_id'] = $album->access_id;
+                $result['object_guid'] = $album->getGUID();
+                $result['view'] = 'river/annotation/comment/album';
+        }
+
+        return $result;
 }
