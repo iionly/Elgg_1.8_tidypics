@@ -1,6 +1,6 @@
 Tidypics plugin for Elgg 1.8
-Latest Version: 1.8.1beta4
-Released: 2013-03-26
+Latest Version: 1.8.1beta5
+Released: 2013-04-01
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (c) iionly 2013, (C) Cash Costello 2011-2013
@@ -27,13 +27,19 @@ Known issues:
 
 Installation and configuration:
 
+(0. If you have a previous version of the tidypics plugin installed then disable the plugin on your site and remove the tidypics folder from the mod folder on your server before installing the new version,)
 1. copy the tidypics plugin folder into the mod folder on your server,
 2. enable the plugin in the admin section of your site,
-3. configure the plugin settings.
+3. configure the plugin settings. Especially, check if there's an "Upgrade" button visible on the Tidypics plugin settings page and if yes, execute the upgrade.
 
 
 
 Changelog:
+
+Changes for release 1.8.1beta5 (by iionly):
+
+- Fix in river entry creation (hopefully last fix necessary for now...).
+
 
 Changes for release 1.8.1beta4 (by iionly):
 

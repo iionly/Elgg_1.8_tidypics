@@ -721,17 +721,11 @@ function tidypics_comments_handler($hook, $type, $value, $params) {
         $subtype = $value['subtype'];
         $action_type = $value['action_type'];
 
-        if ($action_type != 'comment' && !($subtype == 'image' || $subtype == 'album' || $subtype !== 'tidypics_batch')) {
-                return;
-        }
-
-        if ($subtype == 'image') {
+        if ($subtype == 'image' && $action_type == 'comment') {
                 $result['view'] = 'river/annotation/comment/image';
-        }
-        if ($subtype == 'album') {
+        } else if ($subtype == 'album' && $action_type == 'comment') {
                 $result['view'] = 'river/annotation/comment/album';
-        }
-        if ($subtype == 'tidypics_batch') {
+        } else if ($subtype == 'tidypics_batch' && $action_type == 'comment') {
                 $batch = get_entity($value['object_guid']);
                 $album = get_entity($batch->container_guid);
                 $annotation = elgg_get_annotation_from_id($value['annotation_id']);
@@ -741,6 +735,8 @@ function tidypics_comments_handler($hook, $type, $value, $params) {
                 $result['access_id'] = $album->access_id;
                 $result['object_guid'] = $album->getGUID();
                 $result['view'] = 'river/annotation/comment/album';
+        } else {
+                return;
         }
 
         return $result;
