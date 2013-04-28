@@ -78,7 +78,13 @@ function tidypics_migrate_user_pics(ElggUser $user) {
 
 	// get an album to migrate into if it already exists.
 	// will create later on if it doesn't.
-	$user_album_entities = get_entities_from_metadata('migrated_from_files', true, 'object', 'album', $user->getGUID(), 1);
+	$user_album_entities = elgg_get_entities_from_metadata(array('metadata_name' => 'migrated_from_files',
+                                                                     'metadata_value' => true,
+	                                                             'type' => 'object',
+	                                                             'subtype' => 'album',
+	                                                             'owner_guid' => $user->getGUID(),
+	                                                             'limit' => 1));
+	
 	$user_album_guid = isset($album_entities[0]) ? $album_entities[0]->getGUID() : false;
 
 	// a list of albums to randomly select a cover for on newly created albums.
@@ -105,7 +111,7 @@ function tidypics_migrate_user_pics(ElggUser $user) {
 
 			// yes, this is how you get entities by container_guid.
 			// yes, it's wrong, wrong, wrong for this function to work this way.
-			$group_album_entities = get_entities('object', 'album', $group_guid);
+			$group_album_entities = elgg_get_entities(array('type' => 'object', 'subtype' => 'album',  'owner_guid' => $group_guid));
 
 			// get_entities_from_metadata doesn't support container_guid (or owner_guid meaning container_guid)
 			// do it the hard way.
@@ -297,5 +303,10 @@ function tidypics_get_user_pics_from_files($user_guid) {
 	}
 
 	// @todo Might have to cycle this through with standard while + foreach.
-	return get_entities_from_metadata('simpletype', 'image', 'object', 'file', $user_guid, 5000);
+	return elgg_get_entities_from_metadata(array('metadata_name' => 'simpletype',
+                                                     'metadata_value' => 'image',
+                                                     'type' => 'object',
+                                                     'subtype' => 'file',
+                                                     'owner_guid' => $user_guid,
+                                                     'limit' => 5000));
 }

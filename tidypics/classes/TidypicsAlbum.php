@@ -45,7 +45,7 @@ class TidypicsAlbum extends ElggObject {
 			return false;
 		}
 
-		mkdir(tp_get_img_dir() . $this->guid, 0755, true);
+		mkdir(tp_get_img_dir($this->guid), 0755, true);
 
 		return true;
 	}

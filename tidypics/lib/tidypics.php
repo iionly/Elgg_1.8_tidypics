@@ -62,9 +62,10 @@ function tp_get_latest_albums($num_albums, array $container_guids = NULL, $conte
  *
  * @return string	path to image directory
  */
-function tp_get_img_dir() {
+function tp_get_img_dir($album_guid) {
 	$file = new ElggFile();
-	return $file->getFilenameOnFilestore() . 'image/';
+	$file->setFilename("image/$album_guid");
+	return $file->getFilenameOnFilestore($file);
 }
 
 /**
@@ -238,7 +239,7 @@ function tp_guid_callback($row) {
  */
 
 function tp_view_entity_list($entities, $count, $offset, $limit, $fullview = true, $viewtypetoggle = false, $pagination = true) {
-	$context = get_context();
+	$context = elgg_get_context();
 
 	$html = elgg_view('tidypics/gallery',array(
 			'entities' => $entities,
@@ -331,7 +332,7 @@ function tp_get_entities_from_annotations_calculate_x($sum = "sum", $entity_type
  */
 function tp_is_group_page() {
 
-	if ($group = page_owner_entity()) {
+	if ($group = elgg_get_page_owner_entity()) {
 		if ($group instanceof ElggGroup)
 			return true;
 	}
@@ -378,7 +379,7 @@ function tp_get_tag_list($viewer) {
 	// is this a group
 	$is_group = tp_is_group_page();
 	if ($is_group) {
-		$group_guid = page_owner();
+		$group_guid = elgg_get_page_owner_guid();
 		$viewer_guid = $viewer->guid;
 		$members = get_group_members($group_guid, 999);
 		if (is_array($members)) {

@@ -16,10 +16,17 @@ $options = array(
 	'full_view' => false,
 	'pagination' => false,
 );
-echo elgg_list_entities($options);
+$content = elgg_list_entities($options);
 
-echo elgg_view('output/url', array(
-        'href' => "/photos/owner/" . $owner->username,
-        'text' => elgg_echo('link:view:all'),
-        'is_trusted' => true,
-));
+echo $content;
+
+if ($content) {
+        $more_link = elgg_view('output/url', array(
+                        'href' => "/photos/owner/" . $owner->username,
+                        'text' => elgg_echo('link:view:all'),
+                        'is_trusted' => true,
+        ));
+        echo "<span class=\"elgg-widget-more\">$more_link</span>";
+} else {
+        echo elgg_echo('tidypics:widget:no_albums');
+}

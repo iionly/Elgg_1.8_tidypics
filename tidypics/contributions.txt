@@ -1,6 +1,22 @@
 Changelog and contributors list
 
 ------------------------------------------------------------------------
+Version 1.8.1beta6 Change List
+Release Date: 28/04/2013
+------------------------------------------------------------------------
+BEGIN VERSION 1.8.1beta6 CHANGES
+------------------------------------------------------------------------
+ * Fix for Tidypics to work in Elgg 1.8.15 (creating new albums),
+ * Updated uploadify flash uploader to version 3.2 (this might only be a preliminary solution as I might need to switch to another flash (html5) uploader as the Uploadify uploader has some limitations and also seems no longer fully supported),
+ * Fixed some deprecated function calls (they were not in actively used code but some people might have wondered about it nonetheless as the Code Analyzer plugin gave some warnings about them),
+ * Fixed html code in widgets' content.php for better theme compatibility (as suggested by ura soul).
+Contributors:
+  * iionly
+------------------------------------------------------------------------
+END VERSION 1.8.1beta6 CHANGES
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
 Version 1.8.1beta5 Change List
 Release Date: 01/04/2013
 ------------------------------------------------------------------------

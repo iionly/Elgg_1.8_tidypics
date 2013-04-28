@@ -203,7 +203,7 @@ class TidypicsImage extends ElggFile {
 
 		// we need to make sure the directory for the album exists
 		// @note for group albums, the photos are distributed among the users
-		$dir = tp_get_img_dir() . $this->getContainerGUID();
+		$dir = tp_get_img_dir($this->getContainerGUID());
 		if (!file_exists($dir)) {
 			mkdir($dir, 0755, true);
 		}
@@ -341,7 +341,7 @@ class TidypicsImage extends ElggFile {
 	 * @return true/false
 	 */
 	public function isPhotoTagged() {
-		$num_tags = count_annotations($this->getGUID(), 'object', 'image', 'phototag');
+		$num_tags = elgg_get_annotations(array('guid' => $this->getGUID(), 'type' => 'object', 'subtype' => 'image', 'annotation_name' => 'phototag', 'count' => true));
 		if ($num_tags > 0) {
 			return true;
 		} else {
