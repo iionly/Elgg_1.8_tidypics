@@ -1,6 +1,27 @@
 Changelog and contributors list
 
 ------------------------------------------------------------------------
+Version 1.8.1beta7 Change List
+Release Date: 20/05/2013
+------------------------------------------------------------------------
+BEGIN VERSION 1.8.1beta7 CHANGES
+------------------------------------------------------------------------
+ * auto-correction of image orientation on image upload (thanks to Jimmy Coder for the code snippet for image rotation),
+ * word tags (as opposed to tagging a user): tags that don't correspond with a username will be added to the tags of the photo (searchable),
+ * Includes the following changes in Tidypics from official Tidypics repo at https://github.com/cash/Tidypics:
+    - set tiny size for sites that may not have it set (e.g. possibly sites updated from Elgg 1.6) (by Cash Costello),
+    - stripping non word characters from title when pulled from image filename (by Cash Costello),
+    - added tagging to river with notification to user (by Cash Costello, Kevin Jardine).
+Contributors:
+  * iionly
+  * Cash Costello
+  * Kevin Jardine
+  * Jimmy Coder
+------------------------------------------------------------------------
+END VERSION 1.8.1beta7 CHANGES
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
 Version 1.8.1beta6 Change List
 Release Date: 28/04/2013
 ------------------------------------------------------------------------

@@ -36,45 +36,11 @@ if (!$user) {
 	$value = $user->guid;
 }
 
-/* // not adding as plain tag yet
-$new_word_tag = false;
-if ($user_id != 0) {
-	$relationships_type = 'user';
-	$value = $user_id;
-} else {
-	$relationships_type = 'word';
-	$value = $word;
-
-	// check to see if the photo has this tag and add if not
-	if (!is_array($image->tags)) {
-		if ($image->tags != $word) {
-			$new_word_tag = true;
-			$tagarray = $image->tags . ',' . $word;
-			$tagarray = string_to_tag_array($tagarray);
-		}
-	} else {
-		if (!in_array($word, $image->tags)) {
-			$new_word_tag = true;
-			$tagarray = $image->tags;
-			$tagarray[] = $word;
-		}
-	}
-}
-
-// add new tag now so it is available in search
-if ($new_word_tag) {
-	$image->clearMetadata('tags');
-	$image->tags = $tagarray;
-}
-*/
-
 $tag = new stdClass();
 $tag->coords = $coordinates_str;
 $tag->type = $relationships_type;
 $tag->value = $value;
 $access_id = $image->getAccessID();
-
-$tagger = elgg_get_logged_in_user_entity();
 
 $annotation_id = $image->annotate('phototag', serialize($tag), $access_id);
 if ($annotation_id) {
@@ -83,8 +49,9 @@ if ($annotation_id) {
 		if (!check_entity_relationship($tag->value, 'phototag', $image_guid)) {
 			add_entity_relationship($tag->value, 'phototag', $image_guid);
 
-			// also add this to the river - subject is tagger, object is the image
-			add_to_river('river/object/image/tag', 'tag', $tagger->guid, $image_guid, $access_id, 0, $annotation_id);
+			// also add this to the river - subject is tagger, object is the tagged user
+			$tagger = elgg_get_logged_in_user_entity();
+			add_to_river('river/object/image/tag', 'tag', $tagger->guid, $user->guid, $access_id, 0, $annotation_id);
 
 			// notify user of tagging as long as not self
 			if ($tagger->guid != $user->guid) {
@@ -92,15 +59,36 @@ if ($annotation_id) {
 						$user->guid,
 						$tagger->guid,
 						elgg_echo('tidypics:tag:subject'),
-						sprintf(
-							elgg_echo('tidypics:tag:body'),
-							$image->getTitle(),
-							$tagger->name,
-							$image->getURL()
-						)
+						elgg_echo('tidypics:tag:body', array(
+                                                $image->getTitle(),
+                                                $tagger->name,
+                                                $image->getURL(),
+                                                ))
 				);
 			}
 		}
+	}
+        if ($tag->type === 'word') {
+                // check to see if the photo has this tag and add if not
+                $new_word_tag = false;
+                if (!is_array($image->tags)) {
+                        if ($image->tags != $value) {
+                                $new_word_tag = true;
+                                $tagarray = $image->tags . ',' . $value;
+                                $tagarray = string_to_tag_array($tagarray);
+                        }
+                } else {
+                        if (!in_array($value, $image->tags)) {
+                                $new_word_tag = true;
+                                $tagarray = $image->tags;
+                                $tagarray[] = $value;
+                        }
+                }
+                // add new tag now so it is available in search
+                if ($new_word_tag) {
+                        $image->clearMetadata('tags');
+                        $image->tags = $tagarray;
+                }
 	}
 
 	system_message(elgg_echo("tidypics:phototagging:success"));

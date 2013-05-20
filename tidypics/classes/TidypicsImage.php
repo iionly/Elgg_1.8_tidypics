@@ -193,6 +193,36 @@ class TidypicsImage extends ElggFile {
 		$this->originalfilename = $originalName;
 	}
 
+	
+	/**
+         * Auto-correction of image orientation based on exif data
+         *
+         * @param array $data
+         */
+        protected function OrientationCorrection($data) {
+                // catch for those who don't have exif module loaded
+                if (!is_callable('exif_read_data')) {
+                        return;
+                }
+                $exif = exif_read_data($data['tmp_name'], 'IFDO', true);
+                $orientation = $exif['IFD0']['Orientation'];;
+                if($orientation != 0 || $orientation != 1) {
+                        $image = imagecreatefromstring(file_get_contents($data['tmp_name']));
+                        switch($orientation) {
+                            case 8:
+                                $image = imagerotate($image,90,0);
+                                break;
+                            case 3:
+                                $image = imagerotate($image,180,0);
+                                break;
+                            case 6:
+                                $image = imagerotate($image,-90,0);
+                                break;
+                        }
+                        imagejpeg($image, $data['tmp_name']);
+                }
+        }
+
 	/**
 	 * Save the uploaded image
 	 *
@@ -200,6 +230,8 @@ class TidypicsImage extends ElggFile {
 	 */
 	protected function saveImageFile($data) {
 		$this->checkUploadErrors($data);
+		
+		$this->OrientationCorrection($data);
 
 		// we need to make sure the directory for the album exists
 		// @note for group albums, the photos are distributed among the users

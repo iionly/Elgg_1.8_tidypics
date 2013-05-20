@@ -1,6 +1,6 @@
 Tidypics plugin for Elgg 1.8
-Latest Version: 1.8.1beta6
-Released: 2013-04-28
+Latest Version: 1.8.1beta7
+Released: 2013-05-20
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (c) iionly 2013, (C) Cash Costello 2011-2013
@@ -36,6 +36,15 @@ IMPORTANT: If you have a previous version of the tidypics plugin installed then 
 
 
 Changelog:
+
+Changes for release 1.8.1beta7 (by iionly):
+ - auto-correction of image orientation on image upload (thanks to Jimmy Coder for the code snippet for image rotation),
+ - word tags (as opposed to tagging a user): tags that don't correspond with a username will be added to the tags of the photo (searchable),
+ - Includes the following changes in Tidypics from official Tidypics repo at https://github.com/cash/Tidypics:
+    * set tiny size for sites that may not have it set (e.g. possibly sites updated from Elgg 1.6) (by Cash Costello),
+    * stripping non word characters from title when pulled from image filename (by Cash Costello),
+    * added tagging to river with notification to user (by Cash Costello, Kevin Jardine).
+
 
 Changes for release 1.8.1beta6 (by iionly):
  - Fix for Tidypics to work in Elgg 1.8.15 (creating new albums),
