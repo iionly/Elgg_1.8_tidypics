@@ -23,8 +23,10 @@ $image = get_entity($guid);
 
 $image->title = $title;
 $image->description = $description;
-if ($tags) {
-	$image->tags = string_to_tag_array($tags);
+if($tags) {
+        $image->tags = string_to_tag_array($tags);
+} else {
+        $image->clearMetadata('tags');
 }
 
 if (!$image->save()) {

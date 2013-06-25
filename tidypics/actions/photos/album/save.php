@@ -47,8 +47,10 @@ $album->owner_guid = elgg_get_logged_in_user_guid();
 $album->access_id = $access_id;
 $album->title = $title;
 $album->description = $description;
-if ($tags) {
-	$album->tags = string_to_tag_array($tags);
+if($tags) {
+        $album->tags = string_to_tag_array($tags);
+} else {
+        $album->clearMetadata('tags');
 }
 
 if (!$album->save()) {

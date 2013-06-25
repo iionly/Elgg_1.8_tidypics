@@ -213,7 +213,7 @@ $german = array(
 			'image:index' => "%u von %u",
 
 		// tagging
-			'tidypics:taginstruct' => 'Wähle den Bereich auf dem Bild, für das Du ein Tag setzen willst, oder %s.',
+			'tidypics:taginstruct' => 'Wähle den Bereich im Bild, für das Du ein Tag setzen willst, oder %s. <br> Gebe den Namen eines Freundes ein oder füge ein Wort-Tag zu Bild hinzu.',
 			'tidypics:quit' => 'Beenden',
 			'tidypics:finish_tagging' => 'Taggen beenden',
 			'tidypics:deltag_title' => 'Wähle die Tags, die gelöscht werden sollen',
@@ -221,11 +221,14 @@ $german = array(
 			'tidypics:tagthisphoto' => 'Bild taggen',
 			'tidypics:actiontag' => 'Tag setzen',
 			'tidypics:actioncancel' => 'Abbrechen',
-			'tidypics:inthisphoto' => 'Tags in diesem Bild',
                         'tidypics:usertagged' => "Bilder mit Tags bezogen auf Dich",
+                        'tidypics_tagged_members' => "In diesem Bild getaggte Mitglieder",
 			'tidypics:usertag' => "%s getaggt in Bildern",
                         'tidypics:usertag:nosuccess' => "Der Benutzer existiert nicht.",
+                        'tidypics:usertags_photos:nosuccess' => "Du bist bisher noch nicht in einem Bild getaggt worden.",
 			'tidypics:phototagging:success' => 'Das Bild wurde getaggt.',
+			'tidypics:phototagging:nosuccess' => 'Das Taggen ist fehlgeschlagen weil entweder kein Tag eingegeben wurde oder alle eingegebenen Tags bereits vorhanden sind.',
+			'tidypics:phototagging:success_partly' => 'Das Bild wurde getaggt aber die Wort-Tags, die schon vorhanden waren, wurden ausgelassen.',
 			'tidypics:phototagging:error' => 'Beim Hinzufügen des Tags ist ein Fehler aufgetreten.',
 
 			'tidypics:phototagging:delete:success' => 'Das Tag wurde entfernt.',
@@ -259,6 +262,8 @@ Um das Bild zu sehen, folge diesem Link: %s",
 			'image:river:item' => "ein Bild",
 			'image:river:annotate' => "einen Kommentar zum Bild",
 			'image:river:tagged' => "%s hat %s im Bild %s getaggt",
+			'image:river:wordtagged' => '%s hat neue Word-Tags zum Bild %s hinzugefügt',
+			'image:river:wordtagged_single' => '%s hat ein neues Word-Tag zum Bild %s hinzugefügt',
 			'image:river:tagged:unknown' => "%s hat %s in einem Bild getaggt",
 			'river:create:object:album' => "%s erstellte das Bilderalbum %s",
                         'river:ingroup' => 'in der Gruppe %s',
@@ -270,6 +275,7 @@ Um das Bild zu sehen, folge diesem Link: %s",
 		// notifications
 			'tidypics:newalbum_subject' => 'Neues Bilderalbum',
 			'tidypics:newalbum' => '%s hat ein neues Bilderalbum hinzugefügt.',
+			'tidypics:updatealbum_subject' => 'Neue Bilder in Bilderalbum',
 			'tidypics:updatealbum' => "%s hat neue Bilder zum Album %s hinzugefügt.",
 
 		//  Status messages

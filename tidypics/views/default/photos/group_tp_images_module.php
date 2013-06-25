@@ -38,14 +38,16 @@ if (!$content) {
 	$content = '<p>' . elgg_echo('tidypics:none') . '</p>';
 }
 
-elgg_load_js('lightbox');
-elgg_load_css('lightbox');
-$new_link = elgg_view('output/url', array(
-	                 'href' => "ajax/view/photos/selectalbum/?owner_guid=" .$group->guid,
-	                 'text' => elgg_echo("photos:addphotos"),
-	                 'class' => 'elgg-lightbox',
-	                 'is_trusted' => true,
-                     ));
+if {elgg_is_logged_in()) {
+        elgg_load_js('lightbox');
+        elgg_load_css('lightbox');
+        $new_link = elgg_view('output/url', array(
+                              'href' => "ajax/view/photos/selectalbum/?owner_guid=" .$group->guid,
+                              'text' => elgg_echo("photos:addphotos"),
+                              'class' => 'elgg-lightbox',
+                              'is_trusted' => true,
+                             ));
+}
 
 echo elgg_view('groups/profile/module', array(
 	'title' => elgg_echo('tidypics:mostrecent'),

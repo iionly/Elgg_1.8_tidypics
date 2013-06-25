@@ -5,6 +5,8 @@
  *
  */
 
+gatekeeper();
+
 $owner_guid = get_input('guid');
 $owner = get_entity($owner_guid);
 if(!$owner || !(elgg_instanceof($owner, 'user'))) {
@@ -19,7 +21,7 @@ elgg_push_breadcrumb(elgg_echo('photos'), 'photos/siteimagesall');
 elgg_push_breadcrumb($owner->name);
 
 $offset = (int)get_input('offset', 0);
-$max = 20;
+$max = 16;
 
 // grab the html to display the most recent images
 $images = elgg_list_entities(array('type' => 'object',

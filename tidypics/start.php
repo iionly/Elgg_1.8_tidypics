@@ -94,9 +94,9 @@ function tidypics_init() {
 	elgg_register_plugin_hook_handler('container_permissions_check', 'object', 'tidypics_group_permission_override');
 	elgg_register_plugin_hook_handler('permissions_check:metadata', 'object', 'tidypics_group_permission_override');
 
-	// notifications
-	register_notification_object('object', 'album', elgg_echo('tidypics:newalbum_subject'));
 	elgg_register_plugin_hook_handler('notify:entity:message', 'object', 'tidypics_notify_message');
+	// notifications - we only send notifications when albums have images so unique notify event
+        elgg_register_event_handler('notify', 'album', 'object_notifications'); 
 
 	// allow people in a walled garden to use flash uploader
 	elgg_register_plugin_hook_handler('public_pages', 'walled_garden', 'tidypics_walled_garden_override');
@@ -458,7 +458,7 @@ function tidypics_entity_menu_setup($hook, $type, $return, $params) {
 			$return[] = ElggMenuItem::factory($options);
 		}
 
-		if (elgg_get_plugin_setting('tagging', 'tidypics')) {
+		if (elgg_get_plugin_setting('tagging', 'tidypics') && elgg_is_logged_in()) {
 			$options = array(
 				'name' => 'tagging',
 				'text' => elgg_echo('tidypics:actiontag'),

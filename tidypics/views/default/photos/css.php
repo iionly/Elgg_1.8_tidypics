@@ -99,16 +99,17 @@
 
 .tidypics-tagging-help {
 	position: absolute;
-	left: 50%;
-	top: -25px;
-	width: 250px;
+	left: 35%;
+	top: -40px;
+	width: 450px;
 	margin-left: -125px;
-	text-align: center;
+	text-align: left;
 }
 
 .tidypics-tagging-select {
 	position: absolute;
-	max-width: 300px;
+	max-width: 200px;
+	text-align: left;
 }
 
 .tidypics-tag-wrapper {

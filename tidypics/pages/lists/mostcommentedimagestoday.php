@@ -9,22 +9,23 @@
 elgg_push_breadcrumb(elgg_echo('photos'), 'photos/siteimagesall');
 elgg_push_breadcrumb(elgg_echo('tidypics:mostcommentedtoday'));
 
-$max = 20;
+$offset = (int)get_input('offset', 0);
+$max = 16;
 
 $start = mktime(0,0,0, date("m"), date("d"), date("Y"));
 $end = time();
 
 $options = array(
-        'types' => 'object',
-        'subtypes' => 'image',
+        'type' => 'object',
+        'subtype' => 'image',
         'limit' => $max,
+        'offset' => $offset,
         'annotation_name' => 'generic_comment',
         'calculation' => 'count',
         'annotation_created_time_lower' => $start,
         'annotation_created_time_upper' => $end,
         'order_by' => 'annotation_calculation desc',
         'full_view' => false,
-        'pagination' => false,
         'list_type' => 'gallery',
         'gallery_class' => 'tidypics-gallery'
 );
@@ -33,14 +34,16 @@ $result = elgg_list_entities_from_annotation_calculation($options);
 
 $title = elgg_echo('tidypics:mostcommentedtoday');
 
-elgg_load_js('lightbox');
-elgg_load_css('lightbox');
-$owner_guid = elgg_get_logged_in_user_guid();
-elgg_register_menu_item('title', array('name' => 'addphotos',
-                                       'href' => "ajax/view/photos/selectalbum/?owner_guid=$owner_guid",
-                                       'text' => elgg_echo("photos:addphotos"),
-                                       'class' => 'elgg-lightbox',
-                                       'link_class' => 'elgg-button elgg-button-action'));
+if (elgg_is_logged_in()) {
+        elgg_load_js('lightbox');
+        elgg_load_css('lightbox');
+        $logged_in_guid = elgg_get_logged_in_user_guid();
+        elgg_register_menu_item('title', array('name' => 'addphotos',
+                                               'href' => "ajax/view/photos/selectalbum/?owner_guid=" . $logged_in_guid,
+                                               'text' => elgg_echo("photos:addphotos"),
+                                               'class' => 'elgg-lightbox',
+                                               'link_class' => 'elgg-button elgg-button-action'));
+}
 
 if (!empty($result)) {
         $area2 = $result;

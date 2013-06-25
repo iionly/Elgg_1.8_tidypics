@@ -34,18 +34,20 @@ elgg_push_breadcrumb($album->getTitle());
 
 $content = elgg_view_entity($album, array('full_view' => true));
 
-elgg_load_js('lightbox');
-elgg_load_css('lightbox');
-if (elgg_instanceof($owner, 'group')) {
-        $logged_in_guid = $owner->guid;
-} else {
-        $logged_in_guid = elgg_get_logged_in_user_guid();
+if (elgg_is_logged_in()) {
+        elgg_load_js('lightbox');
+        elgg_load_css('lightbox');
+        if (elgg_instanceof($owner, 'group')) {
+                $logged_in_guid = $owner->guid;
+        } else {
+                $logged_in_guid = elgg_get_logged_in_user_guid();
+        }
+        elgg_register_menu_item('title', array('name' => 'addphotos',
+                                               'href' => "ajax/view/photos/selectalbum/?owner_guid=" . $logged_in_guid,
+                                               'text' => elgg_echo("photos:addphotos"),
+                                               'class' => 'elgg-lightbox',
+                                               'link_class' => 'elgg-button elgg-button-action'));
 }
-elgg_register_menu_item('title', array('name' => 'addphotos',
-                                       'href' => "ajax/view/photos/selectalbum/?owner_guid=" . $logged_in_guid,
-                                       'text' => elgg_echo("photos:addphotos"),
-                                       'class' => 'elgg-lightbox',
-                                       'link_class' => 'elgg-button elgg-button-action'));
 
 if ($album->getContainerEntity()->canWriteToContainer()) {
 	elgg_register_menu_item('title', array(

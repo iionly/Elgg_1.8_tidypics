@@ -221,21 +221,24 @@ $english = array(
 			'image:index' => "%u of %u",
 
 		// tagging
-			'tidypics:taginstruct' => 'Select the area that you want to tag or %s',
+			'tidypics:taginstruct' => 'Select the area that you want to tag or %s.<br> Type a friend\'s name in or add a word tag to the photo.',
 			'tidypics:quit' => 'Quit',
 			'tidypics:finish_tagging' => 'Stop tagging',
 			'tidypics:tagthisphoto' => 'Tag this photo',
 			'tidypics:actiontag' => 'Tag',
 			'tidypics:actioncancel' => 'Cancel',
-			'tidypics:inthisphoto' => 'In this photo',
                         'tidypics:usertagged' => "Photos you are tagged in",
+                        'tidypics_tagged_members' => "Tagged members in this photos",
 			'tidypics:usertag' => "%s tagged in photos",
                         'tidypics:usertag:nosuccess' => "User does not exist.",
+                        'tidypics:usertags_photos:nosuccess' => "You have not yet been tagged in any photos.",
 			'tidypics:phototagging:success' => 'Photo tag was successfully added.',
+			'tidypics:phototagging:nosuccess' => 'Photo tag failed because there was no tag entered or all entered tags were duplicates of existing tags.',
+			'tidypics:phototagging:success_partly' => 'Photo tag was successfully added but the duplicate word tags were omitted.',
 			'tidypics:phototagging:error' => 'Unexpected error occurred during tagging.',
 
 			'tidypics:phototagging:delete:success' => 'Photo tag was removed.',
-			'tidypics:phototagging:delete:error' => 'Unexpceted error occurred when removing photo tag.',
+			'tidypics:phototagging:delete:error' => 'Unexpected error occurred when removing photo tag.',
 			'tidypics:phototagging:delete:confirm' => 'Remove this tag?',
 
 
@@ -267,6 +270,8 @@ The photo can be viewed here: %s",
 			'image:river:item' => "a photo",
 			'image:river:annotate' => "a comment on the photo",
 			'image:river:tagged' => "%s tagged %s in the photo %s",
+			'image:river:wordtagged' => '%s added new tags to the photo %s',
+			'image:river:wordtagged_single' => '%s added a new tag to the photo %s',
 			'image:river:tagged:unknown' => "%s tagged %s in a photo",
 			'river:create:object:album' => "%s created a new photo album %s",
 			'album:river:item' => "an album",
@@ -277,6 +282,7 @@ The photo can be viewed here: %s",
 		// notifications
 			'tidypics:newalbum_subject' => 'New photo album',
 			'tidypics:newalbum' => '%s created a new photo album.',
+			'tidypics:updatealbum_subject' => 'New photos in album',
 			'tidypics:updatealbum' => "%s uploaded new photos to the album %s.",
 
 		//  Status messages

@@ -5,6 +5,8 @@
  *
  */
 
+gatekeeper();
+
 $owner = elgg_get_logged_in_user_entity();
 
 // set up breadcrumbs
@@ -13,7 +15,7 @@ elgg_push_breadcrumb($owner->name, "photos/siteimagesfriends/$owner->username");
 elgg_push_breadcrumb(elgg_echo('friends'));
 
 $offset = (int)get_input('offset', 0);
-$max = 20;
+$max = 16;
 
 if ($friends = get_user_friends($owner->guid, "", 999999, 0)) {
         $friendguids = array();

@@ -90,13 +90,33 @@ if ($page == 'upload') {
                                                       'section' => 'D'));
         }
 
-        elgg_register_menu_item('page', array('name' => 'E10_tidypics_usertagged',
-                                      'text' => elgg_echo('tidypics:usertagged'),
-                                      'href' => $base . "tagged?guid=$current_user_guid",
-                                      'section' => 'E'));
+        if(elgg_is_logged_in()) {
+                elgg_register_menu_item('page', array('name' => 'E10_tidypics_usertagged',
+                                        'text' => elgg_echo('tidypics:usertagged'),
+                                        'href' => $base . "tagged?guid=$current_user_guid",
+                                        'section' => 'E'));
+        }
 
 } else if ($image && $page == 'tp_view') {
         if (elgg_get_plugin_setting('exif', 'tidypics')) {
-            echo elgg_view('photos/sidebar/exif', $vars);
+                echo elgg_view('photos/sidebar/exif', $vars);
+        }
+
+        // list of tagged members in an image (code from Tagged people plugin by Kevin Jardine)
+        if (elgg_get_plugin_setting('tagging', 'tidypics')) {
+                $body = elgg_list_entities_from_relationship(array(
+                        'relationship' => 'phototag',
+                        'relationship_guid' => $image->guid,
+                        'inverse_relationship' => true,
+                        'type' => 'user',
+                        'limit' => 15,
+                        'list_type' => 'gallery',
+                        'gallery_class' => 'elgg-gallery-users',
+                        'pagination' => false
+                ));
+                if ($body) {
+                        $title = elgg_echo('tidypics_tagged_members');
+                        echo elgg_view_module('aside', $title, $body);
+                }
         }
 }

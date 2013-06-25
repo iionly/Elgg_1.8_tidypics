@@ -10,6 +10,10 @@ group_gatekeeper();
 
 $owner = elgg_get_page_owner_entity();
 
+if (!$owner) {
+        forward(REFERER);
+}
+
 $title = elgg_echo('album:user', array($owner->name));
 
 // set up breadcrumbs
@@ -34,14 +38,16 @@ if (!$content) {
 	$content = elgg_echo('tidypics:none');
 }
 
-elgg_load_js('lightbox');
-elgg_load_css('lightbox');
-$logged_in_guid = elgg_get_logged_in_user_guid();
-elgg_register_menu_item('title', array('name' => 'addphotos',
-                                       'href' => "ajax/view/photos/selectalbum/?owner_guid=" . $logged_in_guid,
-                                       'text' => elgg_echo("photos:addphotos"),
-                                       'class' => 'elgg-lightbox',
-                                       'link_class' => 'elgg-button elgg-button-action'));
+if (elgg_is_logged_in()) {
+        elgg_load_js('lightbox');
+        elgg_load_css('lightbox');
+        $logged_in_guid = elgg_get_logged_in_user_guid();
+        elgg_register_menu_item('title', array('name' => 'addphotos',
+                                               'href' => "ajax/view/photos/selectalbum/?owner_guid=" . $logged_in_guid,
+                                               'text' => elgg_echo("photos:addphotos"),
+                                               'class' => 'elgg-lightbox',
+                                               'link_class' => 'elgg-button elgg-button-action'));
+}
 
 elgg_register_title_button();
 

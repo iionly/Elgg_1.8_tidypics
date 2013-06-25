@@ -1,6 +1,6 @@
 Tidypics plugin for Elgg 1.8
-Latest Version: 1.8.1beta7
-Released: 2013-05-20
+Latest Version: 1.8.1beta8
+Released: 2013-06-25
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (c) iionly 2013, (C) Cash Costello 2011-2013
@@ -11,18 +11,15 @@ This is a slightly improved version of the Tidypics plugin for Elgg 1.8.
 
 ATTENTION:
 
-CURRENTLY STILL IN BETA!!!
+Requires Elgg 1.8.16 at minimum! Please upgrade your Elgg installation first before upgrading the Tidypics plugin.
 
-I would advice you to use the flash uploader on productive sites only after thorough testing. If in doubt, use the basic uploader. With Beta6 I made some improvements in the flash uploader (upgraded to version 3.2 of the Uploadify flash uploader) compared to the original Tidypics version but there might still some bugs included. Addtionally, the flash uploader has some limitations (due to limitations of Uploadify), so I might decide to switch to another flash uploader (most likely with html5 support) in future releases.
-
+Currently still in beta! Most things should work. If you notice any issues, please tell me!
 
 
 Known issues:
 
-- flash uploader might not be free of errors,
-- watermarking not fully tested / not fully working,
-- slightshow not yet fully tested,
-- tagging is not yet feature complete (as compared to pre-Elgg 1.8, e.g. tagging users) and what is implemented might still not fully work.
+- watermarking not fully working,
+- slightshow not fully working.
 
 
 
@@ -36,6 +33,24 @@ IMPORTANT: If you have a previous version of the tidypics plugin installed then 
 
 
 Changelog:
+
+Changes for release 1.8.1beta8 (by iionly):
+ - Requires Elgg 1.8.16 due to bugfix https://github.com/Elgg/Elgg/issues/5564 for the pagination on list pages to work,
+ - Pagination support for the list pages (like "Most views" / "Recently commented" etc.) to show more than only a hardcoded number of photos in each list view,
+ - List pages (like "Most views" / "Recently commented" etc.) to work correctly when logged out and to show only photos that the viewer is allowed to see based on access level settings,
+ - "All", "Friends", "Mine" tabs hidden on "All photos" page when logged-out,
+ - "Upload photos" button hidden when logged-out,
+ - "Photos you are tagged in" sidebar entry hidden when logged-out,
+ - "Tag" entity menu entry hidden when logged out,
+ - "Photos you are tagged in" page revised,
+ - List of members tagged in a image in sidebar when viewing an image (by including a code snippet of the Tagged People plugin by Kevin Jardine),
+ - Fix in image and album save actions for deleting all image/album tags to work (referring to the usual Elgg Entity tags),
+ - Improvements in handling Tidypics user and word tags of images (including CSS improvements) to play well together with the image entity tags (avoiding double tags to be added, removal of corresponding image entity tags when an Tidypics image word tag is removed),
+ - River entry on adding word tags to an image,
+ - Includes the following changes in Tidypics from official Tidypics repo at https://github.com/cash/Tidypics:
+    * made the albums notifications overridable rather than calling object_notifications() directly (by Cash Costello),
+    * fixed: security issue with showing malicious exif data (by Jerome Bakker).
+
 
 Changes for release 1.8.1beta7 (by iionly):
  - auto-correction of image orientation on image upload (thanks to Jimmy Coder for the code snippet for image rotation),
