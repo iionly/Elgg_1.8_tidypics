@@ -38,7 +38,7 @@ if (!$content) {
 	$content = '<p>' . elgg_echo('tidypics:none') . '</p>';
 }
 
-if {elgg_is_logged_in()) {
+if (elgg_is_logged_in()) {
         elgg_load_js('lightbox');
         elgg_load_css('lightbox');
         $new_link = elgg_view('output/url', array(

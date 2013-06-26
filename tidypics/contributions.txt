@@ -1,6 +1,20 @@
 Changelog and contributors list
 
 ------------------------------------------------------------------------
+Version 1.8.1beta9 Change List
+Release Date: 26/06/2013
+------------------------------------------------------------------------
+BEGIN VERSION 1.8.1beta9 CHANGES
+------------------------------------------------------------------------
+ * Fixed php syntax error introduced in beta8 preventing group profile pages to be rendered (thanks to Pasley70 for reporting).
+Contributors:
+  * iionly
+  * Pasley70
+------------------------------------------------------------------------
+END VERSION 1.8.1beta9 CHANGES
+------------------------------------------------------------------------
+
+------------------------------------------------------------------------
 Version 1.8.1beta8 Change List
 Release Date: 25/06/2013
 ------------------------------------------------------------------------

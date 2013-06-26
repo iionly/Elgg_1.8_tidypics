@@ -1,6 +1,6 @@
 Tidypics plugin for Elgg 1.8
-Latest Version: 1.8.1beta8
-Released: 2013-06-25
+Latest Version: 1.8.1beta9
+Released: 2013-06-26
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (c) iionly 2013, (C) Cash Costello 2011-2013
@@ -33,6 +33,10 @@ IMPORTANT: If you have a previous version of the tidypics plugin installed then 
 
 
 Changelog:
+
+Changes for release 1.8.1beta9 (by iionly):
+- Fixed php syntax error introduced in beta8 preventing group profile pages to be rendered (thanks to Pasley70 for reporting).
+
 
 Changes for release 1.8.1beta8 (by iionly):
  - Requires Elgg 1.8.16 due to bugfix https://github.com/Elgg/Elgg/issues/5564 for the pagination on list pages to work,
