@@ -1,6 +1,6 @@
 Tidypics plugin for Elgg 1.8
-Latest Version: 1.8.1beta9
-Released: 2013-06-26
+Latest Version: 1.8.1beta10
+Released: 2013-08-17
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (c) iionly 2013, (C) Cash Costello 2011-2013
@@ -33,6 +33,19 @@ IMPORTANT: If you have a previous version of the tidypics plugin installed then 
 
 
 Changelog:
+
+Changes for release 1.8.1beta10 (by iionly):
+- Some preparations for compatibility with Elgg 1.9 (though I will release a separate version of Tidypics for Elgg 1.9!),
+- Replacement of a deprecated function,
+- Small improvement in Flash uploader error handling,
+- New plugin option: use of slideshow optional,
+- Fixed check of memory requirement for image re-sizing on upload when using GD php extension,
+- Slightly better catching of missing images / thumbnail situations,
+- Improved image orientation correction on image upload. When using GD library it will only be done when memory requirement is fullfilled. Additionally, Imagick php extension or ImageMagick library is used when defined as image library in Tidypics plugin settings,
+- New tab on Tidypics plugin settings: image deletion by providing GUID of image (in case the image entry can't be deleted via site front-end),
+- Includes the following changes in Tidypics from official Tidypics repo at https://github.com/cash/Tidypics:
+    * correction of text in notifications about image uploads in case the uploader is not the owner of the album (by Jerome Bakker).
+
 
 Changes for release 1.8.1beta9 (by iionly):
 - Fixed php syntax error introduced in beta8 preventing group profile pages to be rendered (thanks to Pasley70 for reporting).

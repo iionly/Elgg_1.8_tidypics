@@ -23,6 +23,7 @@ $owner_link = elgg_view('output/url', array(
 	'text' => $photo->getOwnerEntity()->name,
 ));
 $author_text = elgg_echo('byline', array($owner_link));
+$date = elgg_view_friendly_time($image->time_created);
 
 $owner_icon = elgg_view_entity_icon($photo->getOwnerEntity(), 'tiny');
 
@@ -33,7 +34,7 @@ $metadata = elgg_view_menu('entity', array(
 	'class' => 'elgg-menu-hz',
 ));
 
-$subtitle = "$author_text $date $categories $comments_link";
+$subtitle = "$author_text $date";
 
 $params = array(
 	'entity' => $photo,

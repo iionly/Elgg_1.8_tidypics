@@ -5,7 +5,7 @@
 
 $plugin = $vars['plugin'];
 
-$checkboxes = array('tagging', 'view_count', 'uploader', 'exif', 'download_link', 'album_comments');
+$checkboxes = array('tagging', 'view_count', 'uploader', 'exif', 'download_link' , 'slideshow', 'album_comments');
 foreach ($checkboxes as $checkbox) {
 	echo '<div>';
 	echo '<label>';

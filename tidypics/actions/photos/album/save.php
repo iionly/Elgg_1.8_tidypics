@@ -50,7 +50,7 @@ $album->description = $description;
 if($tags) {
         $album->tags = string_to_tag_array($tags);
 } else {
-        $album->clearMetadata('tags');
+        $album->deleteMetadata('tags');
 }
 
 if (!$album->save()) {

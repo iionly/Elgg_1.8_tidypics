@@ -44,13 +44,13 @@ if ($annotation->delete()) {
                                         $removed_tags[] = $image_tag;
                                 }
                         }
-                        $image->clearMetadata('tags');
+                        $image->deleteMetadata('tags');
                         if (sizeof($tagarray) > 0) {
                                 $image->tags = $tagarray;
                         }
                 } else {
                         if ($tag->value === $image->tags) {
-                                $image->clearMetadata('tags');
+                                $image->deleteMetadata('tags');
                         }
                 }
 	}

@@ -40,8 +40,7 @@ $image->access_id = $album->access_id;
 $image->batch = $batch;
 
 try {
-	$image->save($file);
-	$album->prependImageList(array($image->guid));
+	$result = $image->save($file);
 
 	if (elgg_get_plugin_setting('img_river_view', 'tidypics') === "all") {
 		add_to_river('river/object/image/create', 'create', $image->getOwnerGUID(), $image->getGUID());
@@ -49,7 +48,16 @@ try {
 } catch (Exception $e) {
 	// remove the bits that were saved
 	delete_entity($image->getGUID());
+	$result = false;
 	echo $e->getMessage();
+}
+
+if ($result) {
+        $album->prependImageList(array($image->guid));
+
+                if (elgg_get_plugin_setting('img_river_view', 'tidypics') === "all") {
+                        add_to_river('river/object/image/create', 'create', $image->getOwnerGUID(), $image->getGUID());
+                }
 }
 
 exit;

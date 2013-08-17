@@ -101,6 +101,7 @@ $german = array(
 			'tidypics:settings:album_comments' => 'Kommentieren von Bilderalben erlauben',
 			'tidypics:settings:exif' => "EXIF-Daten anzeigen",
 			'tidypics:settings:view_count' => "Zugriffszähler anzeigen",
+			'tidypics:settings:slideshow' => 'Slideshow erlauben',
 			'tidypics:settings:uploader' => "Flash-Uploader verwenden",
 			'tidypics:settings:grp_perm_override' => "Gruppen-Mitgliedern unbeschränkten Zugriff auf die Verwaltung von Gruppen-Alben geben",
 			'tidypics:settings:maxfilesize' => "Maximal erlaubte Bildgröße in Megabytes (MB):",
@@ -117,7 +118,7 @@ $german = array(
 			'tidypics:settings:smallsize' => "Bildgröße in der Alben-Ansicht",
 			'tidypics:settings:tinysize' => "Bildgröße von Vorschaubildern",
 			'tidypics:settings:sizes:instructs' => 'Du mußt eventuell die CSS-Einstellungen anpassen, falls Du die vorgegebenen Standard-Bildgrößen änderst.',
-			'tidypics:settings:im_id' => "Bilder-ID",
+			'tidypics:settings:im_id' => "Bild-ID",
 			'tidypics:settings:heading:img_lib' => "Image-Library-Einstellungen",
 			'tidypics:settings:heading:main' => "Grundeinstellungen",
 			'tidypics:settings:heading:river' => "Einstellungen für die River-Integration",
@@ -167,6 +168,14 @@ $german = array(
 			'tidypics:thumbnail_tool:invalid_image_info' => 'Beim Abrufen Bildinformationen ist ein Fehler aufgetreten.',
 			'tidypics:thumbnail_tool:create_failed' => 'Die Erzeugung der Vorschaubilder ist fehlgeschlagen.',
 			'tidypics:thumbnail_tool:created' => 'Die Vorschaubilder wurden erzeugt.',
+			
+                // delete image tool
+                        'tidypics:delete_image' => "Bild löschen",
+                        'tidypics:im_id' => "Bild-ID",
+                        'tidypics:delete_image_blurb' => 'Im Folgenden kannst Du einen Bildeintrag löschen, falls dies aus irgendeinem Grund nicht über den Löschen-Knopf auf der Seite des Bildes möglich ist. Dies kann beispielsweise nötig sein, wenn beim Hochladen des Bildes etwas komplett schiefgelaufen ist (was hoffentlich nur äußerst selten passiert) und die Seite, auf der dieser Bildeintrag normalerweise dargestellt werden sollte, nicht richtig dargestellt werden kann.  Bestimme die GUID des Bildes, das Du löschen willst (dies ist die Nummer, die fast am Ende der URL dieses Bildeintrages enthalten ist) und gebe diese Nummer im folgenden Eingabefeld ein.',
+                        'tidypics:delete_image:no_guid' => 'Es wurde keine Elgg-Entitätmit dieser GUID gefunden.',
+                        'tidypics:delete_image:success' => 'Die Tidypics Bild-Entität wurde gelöscht.',
+                        'tidypics:delete_image:no_image' => 'Diese GUID gehört nicht zu einer Tidypics Bild-Entität. Löschen abgebrochen.',
 
 		//actions
 			'album:create' => "Neues Album hinzufügen",
@@ -200,7 +209,8 @@ $german = array(
 			'tidypics:continue' => 'Fortsetzen',
 
 		// albums
-			'album:num' => '%s Bilder',
+			'album:created_by' => 'Von ',
+			'album:num' => 'mit %s Bildern',
 
 		//views
 			'image:total' => "Bilder im Album:",
@@ -274,9 +284,25 @@ Um das Bild zu sehen, folge diesem Link: %s",
 
 		// notifications
 			'tidypics:newalbum_subject' => 'Neues Bilderalbum',
-			'tidypics:newalbum' => '%s hat ein neues Bilderalbum hinzugefügt.',
+			'tidypics:newalbum' => '%s hat ein neues Bilderalbum hinzugefügt',
 			'tidypics:updatealbum_subject' => 'Neue Bilder in Bilderalbum',
-			'tidypics:updatealbum' => "%s hat neue Bilder zum Album %s hinzugefügt.",
+			'tidypics:updatealbum' => "%s hat neue Bilder zum Album %s hinzugefügt",
+
+                        'tidypics:notify:summary_newalbum' => 'Neues Bilderalbum namens %s',
+                        'tidypics:notify:subject_newalbum' => 'Neues Bilderalbum: %s',
+                        'tidypics:notify:body_newalbum' =>
+'%s hat ein neues Bilderalbum hinzugefügt: %s
+
+Schau Dir das Bilderalbum an und schreibe einen Kommentar:
+%s',
+
+                        'tidypics:notify:summary_updatealbum' => 'Neue Bilder im Bilderalbum %s',
+                        'tidypics:notify:subject_updatealbum' => 'Neue Bilder im Bilderalbum: %s',
+                        'tidypics:notify:body_updatealbum' =>
+'%s hat neue Bilder zum Album %s hinzugefügt
+
+Schau Dir das Bilderalbum an und schreibe einen Kommentar:
+%s',
 
 		//  Status messages
 			'tidypics:upl_success' => "Deine Bilder wurden hochgeladen.",

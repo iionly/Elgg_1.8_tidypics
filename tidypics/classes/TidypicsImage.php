@@ -193,8 +193,7 @@ class TidypicsImage extends ElggFile {
 		$this->originalfilename = $originalName;
 	}
 
-	
-	/**
+        /**
          * Auto-correction of image orientation based on exif data
          *
          * @param array $data
@@ -205,21 +204,87 @@ class TidypicsImage extends ElggFile {
                         return;
                 }
                 $exif = exif_read_data($data['tmp_name'], 'IFDO', true);
-                $orientation = $exif['IFD0']['Orientation'];;
-                if($orientation != 0 || $orientation != 1) {
-                        $image = imagecreatefromstring(file_get_contents($data['tmp_name']));
-                        switch($orientation) {
-                            case 8:
-                                $image = imagerotate($image,90,0);
-                                break;
-                            case 3:
-                                $image = imagerotate($image,180,0);
-                                break;
-                            case 6:
-                                $image = imagerotate($image,-90,0);
-                                break;
+                if(!empty($exif['IFD0']['Orientation'])) {
+                        $orientation = $exif['IFD0']['Orientation'];
+                        if($orientation != 0 || $orientation != 1) {
+
+                                $imageLib = elgg_get_plugin_setting('image_lib', 'tidypics');
+
+                                if ($imageLib == 'ImageMagick') {
+                                        // ImageMagick command line
+                                         $im_path = elgg_get_plugin_setting('im_path', 'tidypics');
+                                        if (!$im_path) {
+                                                $im_path = "/usr/bin/";
+                                        }
+                                        if (substr($im_path, strlen($im_path)-1, 1) != "/") {
+                                                $im_path .= "/";
+                                        }
+
+                                        switch($orientation) {
+                                                case 3:
+                                                        $angle = 180;
+                                                        break;
+                                                case 6:
+                                                        $angle = 90;
+                                                        break;
+                                                case 8:
+                                                        $angle = -90;
+                                                        break;
+                                        }
+                                        $filename = $data['tmp_name'];
+                                        $command = $im_path . "mogrify -rotate $angle $filename";
+                                        $output = array();
+                                        $ret = 0;
+                                        exec($command, $output, $ret);
+                                } else if ($imageLib == 'ImageMagickPHP') {
+                                        // imagick php extension
+                                        switch($orientation) {
+                                        case 3:
+                                                $angle = 180;
+                                                break;
+                                        case 6:
+                                                $angle = 90;
+                                                break;
+                                        case 8:
+                                                $angle = -90;
+                                                break;
+                                        }
+                                        $imagick = new Imagick();
+                                        $imagick->readImage($data['tmp_name']);
+                                        $imagick->rotateImage('#000000', $angle);
+                                        $imagick->writeImage($data['tmp_name']);
+                                        $imagick->clear();
+                                        $imagick->destroy(); 
+                                } else {
+                                        // make sure the in memory image size does not exceed memory available
+                                        $imginfo = getimagesize($data['tmp_name']);
+                                        $requiredMemory1 = ceil($imginfo[0] * $imginfo[1] * 5.35);
+                                        $requiredMemory2 = ceil($imginfo[0] * $imginfo[1] * ($imginfo['bits'] / 8) * $imginfo['channels'] * 2.5);
+                                        $requiredMemory = (int)max($requiredMemory1, $requiredMemory2);
+
+                                        $mem_avail = ini_get('memory_limit');
+                                        $mem_avail = rtrim($mem_avail, 'M');
+                                        $mem_avail = $mem_avail * 1024 * 1024;
+                                        $mem_used = memory_get_usage();
+
+                                        $mem_avail = $mem_avail - $mem_used - 2097152; // 2 MB buffer
+                                        if ($requiredMemory < $mem_avail) {
+                                                $image = imagecreatefromstring(file_get_contents($data['tmp_name']));
+                                                switch($orientation) {
+                                                        case 3:
+                                                                $image = imagerotate($image,180,0);
+                                                                break;
+                                                        case 6:
+                                                                $image = imagerotate($image,-90,0);
+                                                                break;
+                                                        case 8:
+                                                                $image = imagerotate($image,90,0);
+                                                                break;
+                                                }
+                                                imagejpeg($image, $data['tmp_name']);
+                                        }
+                                }
                         }
-                        imagejpeg($image, $data['tmp_name']);
                 }
         }
 
@@ -281,7 +346,11 @@ class TidypicsImage extends ElggFile {
 
 		// make sure the in memory image size does not exceed memory available
 		$imginfo = getimagesize($data['tmp_name']);
-		if (!tp_upload_memory_check($image_lib, $imginfo[0] * $imginfo[1])) {
+		$requiredMemory1 = ceil($imginfo[0] * $imginfo[1] * 5.35);
+		$requiredMemory2 = ceil($imginfo[0] * $imginfo[1] * ($imginfo['bits'] / 8) * $imginfo['channels'] * 2.5);
+		$requiredMemory = (int)max($requiredMemory1, $requiredMemory2);
+		$image_lib = elgg_get_plugin_setting('image_lib', 'tidypics');
+		if (!tp_upload_memory_check($image_lib, $requiredMemory)) {
 			trigger_error('Tidypics warning: image memory size too large for resizing so rejecting', E_USER_WARNING);
 			throw new Exception(elgg_echo('tidypics:image_pixels'));
 		}

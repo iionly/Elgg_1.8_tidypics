@@ -94,9 +94,9 @@ function tidypics_init() {
 	elgg_register_plugin_hook_handler('container_permissions_check', 'object', 'tidypics_group_permission_override');
 	elgg_register_plugin_hook_handler('permissions_check:metadata', 'object', 'tidypics_group_permission_override');
 
-	elgg_register_plugin_hook_handler('notify:entity:message', 'object', 'tidypics_notify_message');
-	// notifications - we only send notifications when albums have images so unique notify event
+	// notifications
         elgg_register_event_handler('notify', 'album', 'object_notifications'); 
+        elgg_register_plugin_hook_handler('notify:entity:message', 'object', 'tidypics_notify_message');
 
 	// allow people in a walled garden to use flash uploader
 	elgg_register_plugin_hook_handler('public_pages', 'walled_garden', 'tidypics_walled_garden_override');
@@ -132,6 +132,7 @@ function tidypics_init() {
 
 	elgg_register_action("photos/admin/settings", "$base_dir/admin/settings.php", 'admin');
 	elgg_register_action("photos/admin/create_thumbnails", "$base_dir/admin/create_thumbnails.php", 'admin');
+	elgg_register_action("photos/admin/delete_image", "$base_dir/admin/delete_image.php", 'admin');
 	elgg_register_action("photos/admin/upgrade", "$base_dir/admin/upgrade.php", 'admin');
 	
 	elgg_register_action('photos/image/selectalbum', "$base_dir/image/selectalbum.php");
@@ -196,7 +197,9 @@ function tidypics_page_handler($page) {
 
 		case "album": // view an album individually
 			set_input('guid', $page[1]);
-			elgg_load_js('tidypics:slideshow');
+			if (elgg_get_plugin_setting('slideshow', 'tidypics')) {
+                                elgg_load_js('tidypics:slideshow');
+			}
 			require "$base/album/view.php";
 			break;
 
@@ -472,7 +475,7 @@ function tidypics_entity_menu_setup($hook, $type, $return, $params) {
 	}
 
 	// only show slideshow link if there are images
-	if (elgg_instanceof($entity, 'object', 'album') && $entity->getSize() > 0) {
+	if (elgg_get_plugin_setting('slideshow', 'tidypics') && elgg_instanceof($entity, 'object', 'album') && $entity->getSize() > 0) {
 		$url = $entity->getURL() . '?limit=50&view=rss';
 		$url = elgg_format_url($url);
 		$slideshow_link = "javascript:PicLensLite.start({maxScale:0, feedUrl:'$url'})";
@@ -555,45 +558,48 @@ function tidypics_group_permission_override($hook, $type, $result, $params) {
 
 
 /**
- * Create the body of the notification message
+ *
+ * Prepare a notification message about a new images added to an album
  *
  * Does not run if a new album without photos
  *
- * @param string $hook
- * @param string $type
- * @param bool   $result
- * @param array  $params
- * @return mixed
+ * @param string                          $hook         Hook name
+ * @param string                          $type         Hook type
+ * @param Elgg_Notifications_Notification $notification The notification to prepare
+ * @param array                           $params       Hook parameters
+ * @return Elgg_Notifications_Notification (on Elgg 1.9); mixed (on Elgg 1.8)
  */
-function tidypics_notify_message($hook, $type, $result, $params) {
-	$entity = $params['entity'];
-	$to_entity = $params['to_entity'];
-	$method = $params['method'];
+function tidypics_notify_message($hook, $type, $notification, $params) {
 
-	if (elgg_instanceof($entity, 'object', 'album')) {
-		if ($entity->new_album) {
-			// stops notification from being sent
-			return false;
-		}
+        $entity = $params['entity'];
+        $to_entity = $params['to_entity'];
+        $method = $params['method'];
 
-		if ($entity->first_upload) {
-			$descr = $entity->description;
-			$title = $entity->getTitle();
-			$owner = $entity->getOwnerEntity();
-			return elgg_echo('tidypics:newalbum', array($owner->name))
-					. ': ' . $title . "\n\n" . $descr . "\n\n" . $entity->getURL();
-		} else {
-			if ($entity->shouldNotify()) {
-				$descr = $entity->description;
-				$title = $entity->getTitle();
-				$owner = $entity->getOwnerEntity();
+        if (elgg_instanceof($entity, 'object', 'album')) {
+                if ($entity->new_album) {
+                        // stops notification from being sent
+                        return false;
+                }
 
-				return elgg_echo('tidypics:updatealbum', array($owner->name, $title)) . ': ' . $entity->getURL();
-			}
-		}
-	}
+                if ($entity->first_upload) {
+                        $descr = $entity->description;
+                        $title = $entity->getTitle();
+                        $owner = $entity->getOwnerEntity();
+                        return elgg_echo('tidypics:newalbum', array($owner->name)) . ': ' . $title . "\n\n" . $descr . "\n\n" . $entity->getURL();
+                } else {
+                        if ($entity->shouldNotify()) {
+                                $descr = $entity->description;
+                                $title = $entity->getTitle();
+                                $user = elgg_get_logged_in_user_entity();
+                                if (!$user) {
+                                        $user = $entity->getOwnerEntity();
+                                }
+                                return elgg_echo('tidypics:updatealbum', array($user->name, $title)) . ': ' . $entity->getURL();
+                        }
+                }
+        }
+        return null;
 
-	return null;
 }
 
 /**
@@ -671,7 +677,8 @@ function tidypics_ajax_session_handler($hook, $type, $value, $params) {
 
 	// passed token test, so login and process action
 	login($user);
-	$actions = elgg_get_config('actions');
+	$actions = array();
+        $actions = elgg_get_config('actions');
 	include $actions['photos/image/ajax_upload']['file'];
 
 	exit;

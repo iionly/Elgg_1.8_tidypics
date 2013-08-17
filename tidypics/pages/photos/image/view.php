@@ -53,8 +53,7 @@ if (elgg_is_logged_in()) {
         elgg_register_menu_item('title', array('name' => 'addphotos',
                                                'href' => "ajax/view/photos/selectalbum/?owner_guid=" . $logged_in_guid,
                                                'text' => elgg_echo("photos:addphotos"),
-                                               'class' => 'elgg-lightbox',
-                                               'link_class' => 'elgg-button elgg-button-action'));
+                                               'link_class' => 'elgg-button elgg-button-action elgg-lightbox'));
 }
 
 if (elgg_get_plugin_setting('download_link', 'tidypics')) {

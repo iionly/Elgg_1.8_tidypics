@@ -101,6 +101,7 @@ $english = array(
 			'tidypics:settings:album_comments' => 'Enable commenting on albums',
 			'tidypics:settings:exif' => "Display EXIF data",
 			'tidypics:settings:view_count' => "Display view count",
+			'tidypics:settings:slideshow' => 'Enable slideshow',
 			'tidypics:settings:uploader' => "Use Flash uploader",
 			'tidypics:settings:grp_perm_override' => "Allow group members full access to group albums",
 			'tidypics:settings:maxfilesize' => "Maximum image size in megabytes (MB):",
@@ -169,12 +170,20 @@ $english = array(
 	You may experience problems with thumbnail creation if your image library is not configured properly or
 	if there is not enough memory for the GD library to load and resize a photo. If your users have
 	experienced problems with thumbnail creation and you have corrected your configuration, you can try to redo the
-	thumbnails. Find the unique identifier of the photo (it is the number near the end of the url when viewing
+	thumbnails. Find the unique identifier of the photo (the so called GUID which is the number near the end of the url when viewing
 	a photo) and enter it below.',
 			'tidypics:thumbnail_tool:unknown_image' => 'Unable to get original photo.',
 			'tidypics:thumbnail_tool:invalid_image_info' => 'Error retrieving information about the photo.',
 			'tidypics:thumbnail_tool:create_failed' => 'Failed to create thumbnails.',
 			'tidypics:thumbnail_tool:created' => 'Created thumbnails.',
+			
+		 // delete image tool
+                        'tidypics:delete_image' => "Delete image",
+                        'tidypics:delete_image_id' => "Photo ID",
+                        'tidypics:delete_image_blurb' => 'This page allows you to delete a photo entry in case the photo can\'t be deleted via the delete button on the site\'s front end. This could be necessary in case something went completely wrong at uploading the photo (which hopefully occurs only very rarely!) and the corresponding page of this photo is messed up. Find the unique identifier of the photo (the so called GUID which is the number near the end of the url belonging to this photo entry) and enter it below.',
+                        'tidypics:delete_image:no_guid' => 'There\'s no Elgg entity with this GUID.',
+                        'tidypics:delete_image:success' => 'The Tidypics image-entity was deleted.',
+                        'tidypics:delete_image:no_image' => 'This GUID does not belong to a Tidypics image-entity. Deletion aborted.',
 
 		//actions
 			'album:create' => "Create new album",
@@ -208,7 +217,8 @@ $english = array(
 			'tidypics:continue' => 'Continue',
 
 		// albums
-			'album:num' => '%s photos',
+                        'album:created_by' => 'By ',
+			'album:num' => 'with %s photos',
 
 		//views
 			'image:total' => "Photos in album:",
@@ -281,9 +291,25 @@ The photo can be viewed here: %s",
 
 		// notifications
 			'tidypics:newalbum_subject' => 'New photo album',
-			'tidypics:newalbum' => '%s created a new photo album.',
+			'tidypics:newalbum' => '%s created a new photo album',
 			'tidypics:updatealbum_subject' => 'New photos in album',
-			'tidypics:updatealbum' => "%s uploaded new photos to the album %s.",
+			'tidypics:updatealbum' => "%s uploaded new photos to the album %s",
+			
+			'tidypics:notify:summary_newalbum' => 'New photo album called %s',
+                        'tidypics:notify:subject_newalbum' => 'New photo album: %s',
+                        'tidypics:notify:body_newalbum' =>
+'%s created a new photo album: %s
+
+View and comment on the album:
+%s',
+
+                        'tidypics:notify:summary_updatealbum' => 'New photos in album %s',
+                        'tidypics:notify:subject_updatealbum' => 'New photos in album: %s',
+                        'tidypics:notify:body_updatealbum' =>
+'%s uploaded new photos to the album %s
+
+View and comment on the album:
+%s',
 
 		//  Status messages
 			'tidypics:upl_success' => "Your photos uploaded successfully.",

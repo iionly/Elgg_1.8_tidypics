@@ -30,6 +30,7 @@ If you are unable to settings, Apache may be configured to block pages that use
 file paths as Tidypics does when setting the location of the ImageMagick executable.
 In this case, leave that field blank.
 
+
 Latest photos and latest albums widgets on index page
 =====================================================
 You can either use the Widget Manager plugin to add these widgets to the index page or in case you

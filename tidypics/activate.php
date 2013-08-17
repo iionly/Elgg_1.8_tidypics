@@ -34,6 +34,7 @@ $defaults = array(
 	'exif' => false,
 	'download_link' => true,
 	'album_comments' => false,
+	'slideshow' => false,
 
 	'maxfilesize' => 5,
 	'image_lib' => 'GD',

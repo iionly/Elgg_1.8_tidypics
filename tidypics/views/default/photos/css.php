@@ -13,7 +13,7 @@
 .elgg-module-tidypics-album,
 .elgg-module-tidypics-image {
 	width: 161px;
-	text-align: center;
+	text-align: left;
 	margin: 5px 0;
 }
 .elgg-module-tidypics-image {
@@ -54,7 +54,7 @@
 }
 
 .tidypics-gallery > li {
-	padding: 0 10px;
+	padding: 0 9px;
 }
 
 .tidypics-album-nav {

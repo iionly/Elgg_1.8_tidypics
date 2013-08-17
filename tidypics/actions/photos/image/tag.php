@@ -61,11 +61,11 @@ if ($tag->type === 'word') {
                         if (strlen($value) > 0) {
                                 $value = substr($value, 2);
                         }
-                        $image->clearMetadata('tags');
+                        $image->deleteMetadata('tags');
                         $image->tags = $tagarray;
                 } else {
                         $tagarray = string_to_tag_array($image->tags);
-                        $image->clearMetadata('tags');
+                        $image->deleteMetadata('tags');
                         $image->tags = array_merge($tagarray, $new_tags);
                 }
         } else {
@@ -82,7 +82,7 @@ if ($tag->type === 'word') {
                 if (strlen($value) > 0) {
                         $value = substr($value, 2);
                 }
-                $image->clearMetadata('tags');
+                $image->deleteMetadata('tags');
                 $image->tags = $tagarray;
         }
 

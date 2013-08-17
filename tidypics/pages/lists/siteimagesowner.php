@@ -42,8 +42,7 @@ $owner_guid = elgg_get_logged_in_user_guid();
 elgg_register_menu_item('title', array('name' => 'addphotos',
                                        'href' => "ajax/view/photos/selectalbum/?owner_guid=$owner_guid",
                                        'text' => elgg_echo("photos:addphotos"),
-                                       'class' => 'elgg-lightbox',
-                                       'link_class' => 'elgg-button elgg-button-action'));
+                                       'link_class' => 'elgg-button elgg-button-action elgg-lightbox'));
 
 if (!empty($images)) {
         $area2 = $images;

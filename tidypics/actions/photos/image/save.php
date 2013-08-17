@@ -26,7 +26,7 @@ $image->description = $description;
 if($tags) {
         $image->tags = string_to_tag_array($tags);
 } else {
-        $image->clearMetadata('tags');
+        $image->deleteMetadata('tags');
 }
 
 if (!$image->save()) {
