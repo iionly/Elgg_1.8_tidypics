@@ -151,7 +151,12 @@ function tidypics_page_handler($page) {
 	}
 
 	elgg_load_js('tidypics');
-	
+	elgg_load_js('lightbox');
+	elgg_load_css('lightbox');
+	if (elgg_get_plugin_setting('slideshow', 'tidypics')) {
+                elgg_load_js('tidypics:slideshow');
+        }
+
 	$base = elgg_get_plugins_path() . 'tidypics/pages/photos';
 	$base_lists = elgg_get_plugins_path() . 'tidypics/pages/lists';
 	switch ($page[0]) {
@@ -197,9 +202,6 @@ function tidypics_page_handler($page) {
 
 		case "album": // view an album individually
 			set_input('guid', $page[1]);
-			if (elgg_get_plugin_setting('slideshow', 'tidypics')) {
-                                elgg_load_js('tidypics:slideshow');
-			}
 			require "$base/album/view.php";
 			break;
 
@@ -472,20 +474,6 @@ function tidypics_entity_menu_setup($hook, $type, $return, $params) {
 			);
 			$return[] = ElggMenuItem::factory($options);
 		}
-	}
-
-	// only show slideshow link if there are images
-	if (elgg_get_plugin_setting('slideshow', 'tidypics') && elgg_instanceof($entity, 'object', 'album') && $entity->getSize() > 0) {
-		$url = $entity->getURL() . '?limit=50&view=rss';
-		$url = elgg_format_url($url);
-		$slideshow_link = "javascript:PicLensLite.start({maxScale:0, feedUrl:'$url'})";
-		$options = array(
-			'name' => 'slideshow',
-			'text' => elgg_echo('album:slideshow'),
-			'href' => $slideshow_link,
-			'priority' => 80,
-		);
-		$return[] = ElggMenuItem::factory($options);
 	}
 
 	return $return;

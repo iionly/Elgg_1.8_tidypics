@@ -80,8 +80,7 @@ foreach ($_FILES['images']['name'] as $index => $value) {
 
 if (count($uploaded_images)) {
 	// Create a new batch object to contain these photos
-	$batch = new ElggObject();
-	$batch->subtype = "tidypics_batch";
+	$batch = new TidypicsBatch();
 	$batch->access_id = $album->access_id;
 	$batch->container_guid = $album->getGUID();
 	if ($batch->save()) {

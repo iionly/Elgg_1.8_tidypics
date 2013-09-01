@@ -24,8 +24,7 @@ $params = array(
 $images = elgg_get_entities_from_metadata($params);
 if ($images) {
 	// Create a new batch object to contain these photos
-	$batch = new ElggObject();
-	$batch->subtype = "tidypics_batch";
+	$batch = new TidypicsBatch();
 	$batch->access_id = $album->access_id;
 	$batch->container_guid = $album->guid;
 

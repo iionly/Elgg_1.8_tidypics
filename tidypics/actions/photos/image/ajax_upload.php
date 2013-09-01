@@ -42,9 +42,6 @@ $image->batch = $batch;
 try {
 	$result = $image->save($file);
 
-	if (elgg_get_plugin_setting('img_river_view', 'tidypics') === "all") {
-		add_to_river('river/object/image/create', 'create', $image->getOwnerGUID(), $image->getGUID());
-	}
 } catch (Exception $e) {
 	// remove the bits that were saved
 	delete_entity($image->getGUID());
