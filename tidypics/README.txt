@@ -1,9 +1,9 @@
 Tidypics plugin for Elgg 1.8
-Latest Version: 1.8.1beta11
-Released: 2013-09-01
+Latest Version: 1.8.1beta12
+Released: 2014-01-02
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
-Copyright: (c) iionly 2013, (C) Cash Costello 2011-2013
+Copyright: (c) iionly 2013-2014, (C) Cash Costello 2011-2014
 
 
 
@@ -32,6 +32,18 @@ IMPORTANT: If you have a previous version of the tidypics plugin installed then 
 
 
 Changelog:
+
+Changes for release 1.8.1beta12 (by iionly):
+
+- Added placeholder images to be displayed in case no images have been uploaded to an album yet in the image sizes previously missing,
+- On deletion of an album the corresponding album folder in data directory gets deleted and no longer the (empty) album folder remains,
+- Flash uploader fixed in the case of group albums when someone else than the album creator wants to upload images to a group album,
+- Navigation arrows hidden if an album contains only a single image,
+- Correction of title of group pages "Most recent albums" widget,
+- "View all" link in Latest Photos widget on profile pages working for site visitors not logged in,
+- Fixed list of offered existing albums to select from for image uploads when in group context,
+- Fixed display of image and album gallery pages when images or albums exist that belong to groups with restricted access (The images or albums shown in the gallery pages depend on the viewing user having the necessary right for viewing depending on the access level defined for these albums including the images within these albums. For example a user gets to see all albums with "public" access level regardless if logged in or not. But if you set the access level "public" or "logged in" for a group album this results in even a non-group member being able to get access to such albums and their content. But if the group itself is a restricted group certain problems arise when this group contains "public" or "logged-in" content. In case of the gallery views within Tidypics the outcome is a fatal error occuring on these pages. This fix avoids the fatal error from happening. Still the group images and albums of restricted albums are included in the listings due to the access level set for them. If you don't want any albums or images of restricted groups to be seen by non-group-members you must set the access level of these albums to the corresponding group's level).
+
 
 Changes for release 1.8.1beta11 (by iionly):
 - Some general code cleanup,

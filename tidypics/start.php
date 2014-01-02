@@ -531,7 +531,7 @@ function tidypics_widget_urls($hook_name, $entity_type, $return_value, $params){
  * @return mixed
  */
 function tidypics_group_permission_override($hook, $type, $result, $params) {
-	if (get_input('action') == 'photos/image/upload') {
+	if (get_input('action') == 'photos/image/upload' || get_input('action') == 'photos/image/ajax_upload' || get_input('action') == 'photos/image/ajax_upload_complete') {
 		if (isset($params['container'])) {
 			$album = $params['container'];
 		} else {

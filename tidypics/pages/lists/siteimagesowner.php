@@ -5,8 +5,6 @@
  *
  */
 
-gatekeeper();
-
 $owner_guid = get_input('guid');
 $owner = get_entity($owner_guid);
 if(!$owner || !(elgg_instanceof($owner, 'user'))) {
