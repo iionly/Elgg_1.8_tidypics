@@ -88,7 +88,7 @@ foreach ($batch as $river_entry) {
 		update_data($query);
 	}
 }
-// End of Update Part 1/3
+// End of Update Part 1/4
 
 // Begin of Update PART 2/4:
 // Get comment annotations added to Tidypics batches with a Tidypics 1.8.1betaXX version
@@ -162,7 +162,7 @@ foreach ($batch as $annotation_entry) {
 		update_data($query);
 	}
 }
-// End of Update PART 2/4:
+// End of Update PART 2/4
 
 // Begin of Update PART 3/4:
 // Check for album comments without a river entry and delete them (for each comment made on the activity page

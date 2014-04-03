@@ -34,8 +34,8 @@ Installation and configuration:
 IMPORTANT: If you have a previous version of the tidypics plugin installed then disable the plugin on your site and remove the tidypics folder from the mod folder on your server before installing the new version!
 1. copy the tidypics plugin folder into the mod folder on your server,
 2. enable the plugin in the admin section of your site,
+4. check if there's an "Upgrade" button visible on the Tidypics plugin settings page and if yes, FIRST make a DATABASE BACKUP and then execute the upgrade.
 3. configure the plugin settings.
-4. Check if there's an "Upgrade" button visible on the Tidypics plugin settings page and if yes, FIRST make a database backup and then execute the upgrade.
 
 
 
@@ -43,9 +43,10 @@ Changelog:
 
 Changes for release 1.8.1beta13 (by iionly and Juho Jaakkola):
 
-ATTENTION: this new release contains an update script that changes database entries related to comments and likes made on Tidypics image upload river entries. Read the changelog carefully BEFORE running the upgrade to understand what it does and in any case make a database backup before executing the upgrade to be able to revert to the former state if you are not content with the result. The backup is also important because the script might possibly take some time to finish depening on how many database entries are in need to be updated.
+ATTENTION: this new release contains an update script that changes database entries related to comments and likes made on Tidypics image upload river entries. Read the changelog carefully BEFORE running the upgrade to understand what it does and in any case make a database backup before executing the upgrade to be able to revert to the former state if you are not content with the result. The backup is also important because the script might possibly take some time to finish depending on how many database entries are in need to be updated.
 
 - Code cleanup,
+- Flash uploader: limit number of images that can be added in one go to 10,
 - Fix on friends tab pages of "All Photos" and "All photo albums" to check if user has friends and display a fitting message if not instead of saying the friends would not have uploaded image yet (which shows when the user has friends but they have not yet uploaded images),
 - Removed plugin setting to turn commenting on albums on/off. Commenting on albums is now always on,
 - Commenting on image uploads on the Activity page (commenting on Tidypics_batch entities): when commenting on an upload of a single image the comment will be added to this image and when commenting on an upload of more than a single image the comment will be added to the corresponding album (in both cases the comment made will still be shown also on the activity page below this river entry),
