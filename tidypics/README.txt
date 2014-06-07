@@ -1,45 +1,57 @@
 Tidypics plugin for Elgg 1.8
-Latest Version: 1.8.1beta13
-Released: 2014-04-01
+Latest Version: 1.8.1beta14
+Released: 2014-06-09
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (c) iionly 2013-2014, (C) Cash Costello 2011-2014
 
 
+The photo gallery plugin for Elgg 1.8 (requires Elgg 1.8.16 at minimum! Please upgrade your Elgg installation first before installing/upgrading the Tidypics plugin).
 
-This is a slightly improved version of the Tidypics plugin for Elgg 1.8.
+Features:
 
-ATTENTION:
-
-Requires Elgg 1.8.16 at minimum! Please upgrade your Elgg installation first before upgrading the Tidypics plugin.
-
-Currently still in beta! Most things should work. If you notice any issues, please tell me!
-
-
-Known issues:
-
-- watermarking not fully working.
+ - Photos organized in albums or group albums,
+ - Commenting on photos and albums,
+ - Tagging (members or word tags),
+ - Slideshow,
+ - Watermarking,
+ - Upload multiple photos at once (HTML5/HTML4 uploader or web form),
+ - Sorting photos in albums,
+ - RSS feeds,
+ - Notifications on new uploads,
+ - Activity (river) integration,
+ - Views counter,
+ - Exif data support,
+ - Userpoints support (requires Elggx Userpoints plugin),
+ - Various listing options (All/Mine/Friends photos, All/Mine/Friends albums, listing photos sorted by number/date of views, number/date of comments, number/date/average of ratings),
+ - Admin Customization: supports GD, Imagick and ImageMagick, quotas, size restrictions, and more.
 
 
 Todo:
 
-- Add option to remove the original uploaded image after resized thumbnail images have been created.
-- Replace the Flash uploader with Plupload uploader (support of HTML5),
+- Get watermarking fully working (original uploaded image file gets not yet watermarked but only the resized image files),
+- Add option to remove the original uploaded image after resized thumbnail images have been created,
 - Replace PiclensLite slideshow with Galleria slideshow (no flash required, responsive).
 
 
 
 Installation and configuration:
 
-IMPORTANT: If you have a previous version of the tidypics plugin installed then disable the plugin on your site and remove the tidypics folder from the mod folder on your server before installing the new version!
-1. copy the tidypics plugin folder into the mod folder on your server,
-2. enable the plugin in the admin section of your site,
-4. check if there's an "Upgrade" button visible on the Tidypics plugin settings page and if yes, FIRST make a DATABASE BACKUP and then execute the upgrade.
-3. configure the plugin settings.
+IMPORTANT: If you have a previous version of the tidypics plugin installed, first disable the Tidypics plugin on your site, then remove the tidypics folder from the mod folder on your server before installing the new version!
+1. Copy the tidypics plugin folder into the mod folder on your server,
+2. Enable the plugin in the admin section of your site,
+3. Check if there's an "Upgrade" button visible on the Tidypics plugin settings page and if yes, FIRST make a DATABASE BACKUP and then execute the upgrade.
+4. Configure the plugin settings.
 
 
 
 Changelog:
+
+Changes for release 1.8.1beta14 (by iionly, YaNoo and Joaquín):
+
+- Uploadify flash uploader replaced by Plupload HTML5/HTML4 uploader (thanks to YaNoo for taking the initiative and providing a PR - otherwise you would have had to wait longer for me to implement it),
+- Spanish language file added (provided by Joaquín).
+
 
 Changes for release 1.8.1beta13 (by iionly and Juho Jaakkola):
 

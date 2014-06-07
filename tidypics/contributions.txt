@@ -1,6 +1,23 @@
 Changelog and contributors list
 
 ------------------------------------------------------------------------
+Version 1.8.1beta14 Change List
+Release Date: 09/06/2014
+------------------------------------------------------------------------
+BEGIN VERSION 1.8.1beta14 CHANGES
+------------------------------------------------------------------------
+ * Uploadify flash uploader replaced by Plupload HTML5/HTML4 uploader (thanks to YaNoo for taking the initiative and providing a PR - otherwise you would have had to wait longer for me to implement it),
+ * Spanish language file added (provided by Joaquín).
+Contributors:
+  * iionly
+  * YaNoo
+  * Joaquín
+------------------------------------------------------------------------
+END VERSION 1.8.1beta14 CHANGES
+------------------------------------------------------------------------
+
+
+------------------------------------------------------------------------
 Version 1.8.1beta13 Change List
 Release Date: 01/04/2014
 ------------------------------------------------------------------------
