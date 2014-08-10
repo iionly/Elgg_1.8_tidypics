@@ -58,14 +58,14 @@ elgg.tidypics.uploading.init = function() {
 					up.splice(maxfiles);
 				}
 				if (up.files.length >= maxfiles) {
-					$(up.settings.browse_button).hide();
+					up.disableBrowse(true);
 				}
 			},
 
 			FilesRemoved: function(up, files) {
 				var maxfiles = <?php echo $max_files;?>;
 				if (up.files.length < maxfiles) {
-					$(up.settings.browse_button).show();
+					up.disableBrowse(false);
 				}
 			}
 		}
