@@ -1,6 +1,6 @@
 Tidypics plugin for Elgg 1.8
-Latest Version: 1.8.2
-Released: 2014-09-06
+Latest Version: 1.8.3
+Released: 2014-10-05
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (c) iionly 2013-2014, (C) Cash Costello 2011-2014
@@ -47,6 +47,13 @@ IMPORTANT: If you have a previous version of the tidypics plugin installed, firs
 
 
 Changelog:
+
+Changes for release 1.8.3 (by iionly):
+- "Upload photos" / "Upload photos to this album" buttons hidden within group context for non-group members,
+- "Upload photos" link removed from groups images profile module / widget (failed to work correctly, i.e. not open in a lightbox popup as desired),
+- "Create album" link removed from groups images profile module / widget for for non-members of groups,
+- Disable unintended text shadow within html5 uploader at least in some cases if this text styling has been enabled by other plugins and unwantedly inherited by plupload (can't prevent text shadow in all circumstances as a theme plugin might override Tidypics' CSS).
+
 
 Changes for release 1.8.2 (by iionly):
 - No longer beta! Apart from the things mentioned in the ToDo section everything should work. If not, please tell me.
