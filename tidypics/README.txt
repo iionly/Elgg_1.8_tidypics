@@ -48,6 +48,10 @@ IMPORTANT: If you have a previous version of the tidypics plugin installed, firs
 
 Changelog:
 
+Changes for release 1.8.5 (by iionly):
+- Image file extension "jpeg" added to list of allowed extension for html5 uploader.
+
+
 Changes for release 1.8.4 (by iionly):
 - "No-Flash required" fallback for slideshow.
 

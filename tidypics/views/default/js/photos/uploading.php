@@ -31,7 +31,7 @@ elgg.tidypics.uploading.init = function() {
 		max_file_size : '<?php echo $maxfilesize; ?>mb',
 
 		filters : [
-			{title : "<?php echo elgg_echo('tidypics:uploader:filetype'); ?>", extensions : "jpg,gif,png"}
+			{title : "<?php echo elgg_echo('tidypics:uploader:filetype'); ?>", extensions : "jpg,jpeg,gif,png"}
         ],
 
 		init : {
