@@ -5,6 +5,8 @@
  * List all photos tagged with a user
  */
 
+gatekeeper();
+
 // Get user guid
 $guid = get_input('guid');
 
