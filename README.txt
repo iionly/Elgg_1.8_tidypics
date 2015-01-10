@@ -1,9 +1,9 @@
 Tidypics plugin for Elgg 1.8
-Latest Version: 1.8.4
-Released: 2014-10-07
+Latest Version: 1.8.5
+Released: 2015-01-10
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
-Copyright: (c) iionly 2013-2014, (C) Cash Costello 2011-2014
+Copyright: (c) iionly 2013-2015, (C) Cash Costello 2011-2015
 
 
 The photo gallery plugin for Elgg 1.8 (requires Elgg 1.8.16 at minimum! Please upgrade your Elgg installation first before installing/upgrading the Tidypics plugin).
