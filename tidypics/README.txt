@@ -48,6 +48,11 @@ IMPORTANT: If you have a previous version of the tidypics plugin installed, firs
 
 Changelog:
 
+Changes for release 1.8.6 (by iionly):
+
+- UI-improvements on thumbnails re-creation page (progress bar).
+
+
 Changes for release 1.8.5 (by iionly):
 - Fixed an error in 2013121301.php upgrade script on handling of ElggBatches that could have resulted in the upgrade getting stuck (script in new version is now 2013121401.php),
 - Do not show "Upgrade" button on a new install of Tidypics,
