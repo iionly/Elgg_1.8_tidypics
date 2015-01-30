@@ -1,6 +1,6 @@
 Tidypics plugin for Elgg 1.8
-Latest Version: 1.8.5
-Released: 2015-01-10
+Latest Version: 1.8.6
+Released: 2015-01-31
 Contact: iionly@gmx.de
 License: GNU General Public License version 2
 Copyright: (c) iionly 2013-2015, (C) Cash Costello 2011-2015
@@ -49,8 +49,8 @@ IMPORTANT: If you have a previous version of the tidypics plugin installed, firs
 Changelog:
 
 Changes for release 1.8.6 (by iionly):
-
-- UI-improvements on thumbnails re-creation page (progress bar).
+- UI-improvements on thumbnails re-creation page (progress bar),
+- Fine-tuning of sidebar entries with addition of "Latest comments" and "Tagcloud" blocks where appropriate.
 
 
 Changes for release 1.8.5 (by iionly):
